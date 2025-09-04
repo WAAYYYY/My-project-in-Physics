@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editable Annual Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Annual Calendar (September → August) 2025/2026</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+
+</header>
+
+<main class="calendar-wrapper">
+  <div class="calendar-grid" id="calendar-year">
+
+<script>
+const months = [
+  {num: 9, name: "September", tasks: ["Quantum mechanics", "Review integrals"]},
+  {num:10, name: "October", tasks: ["C++ Project"]},
+  {num:11, name: "November", tasks: ["Advanced algebra"]},
+  {num:12, name: "December", tasks: []},
+  {num:1, name: "January", tasks: []},
+  {num:2, name: "February", tasks: []},
+  {num:3, name: "March", tasks: []},
+  {num:4, name: "April", tasks: []},
+  {num:5, name: "May", tasks: []},
+  {num:6, name: "June", tasks: []},
+  {num:7, name: "July", tasks: []},
+  {num:8, name: "August", tasks: []}
+];
+
+// Load tasks from localStorage if they exist
+let savedTasks = JSON.parse(localStorage.getItem("annualTasks")) || {};
+months.forEach(m => {
+  if(savedTasks[m.num]) m.tasks = savedTasks[m.num];
+});
+
+const container = document.getElementById("calendar-year");
+
+months.forEach(month => {
+  const div = document.createElement("div");
+  div.className = "month-card";
+
+  const h2 = document.createElement("h2");
+  h2.textContent = month.name;
+  div.appendChild(h2);
+
+  const ul = document.createElement("ul");
+
+  // Add existing tasks
+  month.tasks.forEach(task => {
+    const li = document.createElement("li");
+    li.textContent = task;
+    li.contentEditable = true;
+    li.addEventListener("input", saveTasks);
+    ul.appendChild(li);
+  });
+
+  // Field for new task
+  const newLi = document.createElement("li");
+  newLi.contentEditable = true;
+  newLi.textContent = "Add a task...";
+  newLi.style.fontStyle = "italic";
+
+  newLi.addEventListener("focus", () => { 
+    if(newLi.textContent === "Add a task..."){
+      newLi.textContent = ""; 
+      newLi.style.fontStyle = "normal"; 
+    }
+  });
+
+  newLi.addEventListener("blur", () => {
+    const text = newLi.textContent.trim();
+    if(text !== ""){
+      const li = document.createElement("li");
+      li.textContent = text;
+      li.contentEditable = true;
+      li.addEventListener("input", saveTasks);
+      ul.insertBefore(li, newLi);
+      newLi.textContent = "Add a task...";
+      newLi.style.fontStyle = "italic";
+      saveTasks();
+    } else {
+      newLi.textContent = "Add a task...";
+      newLi.style.fontStyle = "italic";
+    }
+  });
+
+  ul.appendChild(newLi);
+  div.appendChild(ul);
+  container.appendChild(div);
+});
+
+// Automatic save and deletion
+function saveTasks(){
+  const allTasks = {};
+  document.querySelectorAll(".month-card").forEach(div => {
+    const monthName = div.querySelector("h2").textContent;
+    const monthNum = months.find(m => m.name === monthName).num;
+
+    const lis = Array.from(div.querySelectorAll("ul li"));
+    const tasks = [];
+
+    lis.forEach(li => {
+      const text = li.textContent.trim();
+      if(text === "Add a task...") return;
+
+      if(text === "") {
+        li.remove(); // remove empty tasks
+      } else {
+        tasks.push(text);
+      }
+    });
+
+    allTasks[monthNum] = tasks;
+  });
+
+  localStorage.setItem("annualTasks", JSON.stringify(allTasks));
+}
+</script>
+
+</body>
+</html>

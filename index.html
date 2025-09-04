@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Projet Physique</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+ 
+  <!-- permet de connecter un fichier avec l'html -->
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <canvas id="particles"></canvas>
+<div class="ligne-texte-atom">
+  <div class="texte-gauche">
+    <h1 class="fade-in titre">My project in Physics</h1>
+    <nav>
+      <a href="Reference.html">References</a>
+      <a href="Calendar.html">Calendar</a>
+      <a href="ressources">Ressources</a>
+    </nav>
+
+    <!-- Animation Physique / atome -->
+
+</div>
+  <div class="atom-animation">
+    <div class="nucleus"></div>
+    <div class="orbit orbit1"><div class="electron"></div></div>
+    <div class="orbit orbit2"><div class="electron"></div></div>
+    <div class="orbit orbit3"><div class="electron"></div></div>
+  </div>
+
+  <p class="animation-description">
+  The infinitely small
+  </p>
+
+<!-- Animation Physique / Systeme solaire -->
+
+  <div class="solar-system">
+  <div class="sun"></div>
+  <div class="orbit orbit-mercury"><div class="planet mercury"></div></div>
+  <div class="orbit orbit-venus"><div class="planet venus"></div></div>
+  <div class="orbit orbit-earth"><div class="planet earth"></div></div>
+  <div class="orbit orbit-mars"><div class="planet mars"></div></div>
+</div>
+
+<p class="animation-description-solar">
+  The infinitely large
+</p>
+
+  <script src="particles.js"></script>
+<!--
+  <main>
+    <section id="accueil" class="fade-in">
+      <h2 class = "paragraphe">Bienvenue</h2>
+
+       pour deplacer un texte 
+  <p class="paragraphe">
+    Ce site suit mon apprentissage et mes recherches en physique fondamentale sur 2 ans.
+  </p>
+
+
+    </section>
+
+    <section id="journal" class="fade-in">
+      <h2>Journal de bord</h2>
+      <p>Clique sur le bouton pour voir une animation :</p>
+      <button onclick="animerBox()">Animation Physique</button>
+      <div id="animationBox"></div>
+
+      <div id="journalContainer"></div>
+    </section>
+
+    <section id="ressources" class="fade-in">
+      <h2>Ressources</h2>
+      <ul>
+        <li><a href="https://arxiv.org" target="_blank">arXiv.org</a></li>
+        <li>Loring Tu - Differential Geometry</li>
+        <li>Joseph Fournier - Mécanique Quantique</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Mon Projet Physique
+  </footer>
+
+JavaScript 
+  <script>
+    // Animation simple
+    function animerBox() {
+      let box = document.getElementById('animationBox');
+      let pos = 0;
+      function move() {
+        pos += 2;
+        box.style.top = pos + 'px';
+        if(pos < 200) requestAnimationFrame(move);
+      }
+      move();
+    }
+
+    // Journal interactif
+    let journal = [
+      { date: 'Septembre 2025', note: 'Début du suivi du projet' },
+      { date: 'Octobre 2025', note: 'Lecture de Loring Tu - Differential Geometry' },
+      { date: 'Novembre 2025', note: 'Mécanique quantique avec les notes de Faure' }
+    ];
+
+    let container = document.getElementById('journalContainer');
+    journal.forEach(item => {
+      let div = document.createElement('div');
+      div.className = 'note';
+      div.innerHTML = `<strong>${item.date} :</strong> ${item.note}`;
+      container.appendChild(div);
+    });
+  </script>
+  -->
+</body>
+
+
+</html>
+

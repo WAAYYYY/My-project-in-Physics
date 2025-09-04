@@ -1,0 +1,454 @@
+/* Style général */
+    body {
+      font-family: 'Merriweather', sans-serif;
+      background-color: #f7f7f7;
+      color: #201616;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      color: rgb(0, 0, 0);
+      padding: 20px;
+      text-align: center;
+    }
+    nav{
+        position: relative;
+        text-align: left;
+        left: 170px;
+        display: flex;
+        flex-direction: column; /* empile les liens verticalement */
+        align-items: flex-start; /* aligne les liens à gauche */
+        padding: 10px; /* espace autour */
+        
+    }
+    nav a {
+      color: rgb(0, 0, 0);
+      margin: 15px 0;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 30px;
+      transition: transform 0.5s; /* animation douce */
+      
+    }
+    
+    nav a:hover {
+      transform: scale(1.2); /* grossit le texte de 20% */
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h1, h2 {
+      font-family: 'Merriweather', serif;
+    }
+
+    /* Animations CSS */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .titre {
+        position: relative;
+        text-align: left;
+        left: 200px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    .paragraphe{
+        position: relative;/* rien à droite ni gauche */
+        text-align: left;
+        left : 200px;
+        }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #2980b9;
+    }
+
+    #animationBox {
+      width: 50px;
+      height: 50px;
+      background: red;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .note {
+      background: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+
+
+.image {
+  display: block;
+  margin: 150px 0 20px 200px;  /* garde ton style actuel */
+  max-width: 170px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.section-image-texte {
+  display: block; /* chaque .image-texte-row sera en colonne */
+  gap: 0;         /* retire l'espace horizontal */
+}
+
+.image-texte-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: -50px; /* espace entre chaque image+texte */
+}
+.texte {
+  max-width: 500px;
+}
+
+.texte-baisse {
+  position: relative;
+  top: 20px; /* déplace le titre 50px vers le bas */
+}
+
+
+    /* If you want to style a navigation bar horizontally, use the nav selector */
+    nav.horizontal {
+    position: relative;
+    text-align: left;
+    left: 175px;
+    display: flex;
+    flex-direction: row; /* empile les liens horizontalement*/
+    align-items: flex-start; /* aligne les liens à gauche */
+    padding: 10px; /* espace autour */
+    }
+
+    nav a {
+      color: rgb(0, 0, 0);
+      margin: 15px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 25px;
+      transition: transform 0.5s; /* animation douce */
+      
+    }
+
+    .Sous-titre{
+        position: relative;
+        text-align: left;
+        left: 200px;
+        font-size: 60px;
+        top: 70px;
+    }
+
+
+
+
+/* Nouvelle grille pour le calendrier */
+.calendar-wrapper {
+  display: flex;
+  justify-content: center; /* centre la grille horizontalement */
+  width: 100%;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 1200px;        /* limite la largeur totale */
+  margin-left: 1000px;       /* décale la grille vers la droite */
+  box-sizing: border-box;   /* évite que le margin fasse dépasser */
+}
+
+
+
+
+/* Cartes des mois */
+.month-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.month-card:hover {
+  transform: scale(1.05);
+}
+
+.month-card h2 { 
+  text-align: center; 
+  margin-bottom: 10px; 
+}
+
+ul { 
+  list-style: none; 
+  padding-left: 0; 
+}
+
+li { 
+  padding: 5px; 
+  background: #e0e0e0; 
+  margin: 5px 0; 
+  border-radius: 5px; 
+  cursor: text; 
+}
+
+li:focus { 
+  outline: 2px solid #3498db; 
+}
+
+
+/* Style pour les particules */
+
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* les clics passent au-dessus */
+  z-index: 0; /* derrière le contenu */
+}
+
+
+.nucleus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;    /* augmenté */
+  height: 64px;   /* augmenté */
+  background: #f10000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 32px 8px #f10000;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1.5px dashed #aaa;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit1 {
+  width: 240px;   /* augmenté */
+  height: 240px;
+  animation: spin-orbit1 3s linear infinite;
+}
+.orbit2 {
+  width: 180px;   /* augmenté */
+  height: 180px;
+  animation: spin-orbit2 2.2s linear infinite;
+}
+.orbit3 {
+  width: 120px;   /* augmenté */
+  height: 120px;
+  animation: spin-orbit3 1.5s linear infinite;
+}
+
+.electron {
+  position: absolute;
+  top: -12px;     /* adapté */
+  left: 50%;
+  width: 28px;    /* augmenté */
+  height: 28px;
+  background: #00aaff;
+  border-radius: 50%;
+  transform: translate(-50%, 0);
+  box-shadow: 0 0 16px 4px #00aaff;
+}
+
+@keyframes spin-orbit1 {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes spin-orbit2 {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes spin-orbit3 {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+.ligne-texte-atom {
+  display: flex;
+  align-items: center; /* centre verticalement */
+  gap: 40px;           /* espace entre texte et atome */
+}
+
+.texte-gauche {
+  flex: 1;
+}
+
+/* Retire le left/top de .atom-animation pour l’alignement */
+.atom-animation {
+  position: relative;
+  width: 320px;   /* augmenté */
+  height: 320px;  /* augmenté */
+  margin: 10px;
+  left: -100px;        /* retire le décalage */
+  top: 90px;
+}
+
+
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;    /* augmenté */
+  height: 60px;
+  background: #FFD700;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 40px 16px #FFD700;
+  z-index: 2;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed #aaa;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-mercury {
+  width: 140px;   /* augmenté */
+  height: 140px;
+  animation: orbit-mercury 3s linear infinite;
+}
+.orbit-venus {
+  width: 200px;   /* augmenté */
+  height: 200px;
+  animation: orbit-venus 6s linear infinite;
+}
+.orbit-earth {
+  width: 260px;   /* augmenté */
+  height: 260px;
+  animation: orbit-earth 9s linear infinite;
+}
+.orbit-mars {
+  width: 320px;   /* augmenté */
+  height: 320px;
+  animation: orbit-mars 12s linear infinite;
+}
+
+.planet {
+  position: absolute;
+  top: -16px;     /* adapté pour la taille des planètes */
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px #0002;
+}
+
+.mercury {
+  width: 18px;
+  height: 18px;
+  background: #b1b1b1;
+}
+.venus {
+  width: 26px;
+  height: 26px;
+  background: #e1c16e;
+}
+.earth {
+  width: 30px;
+  height: 30px;
+  background: #3498db;
+  box-shadow: 0 0 12px 4px #3498db;
+}
+.mars {
+  width: 22px;
+  height: 22px;
+  background: #c1440e;
+}
+
+@keyframes orbit-mercury {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes orbit-venus {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes orbit-earth {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes orbit-mars {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.ligne-texte-solar {
+  display: flex;
+  align-items: center; /* centre verticalement */
+  gap: 40px;           /* espace entre texte et atome */
+}
+
+.texte-gauche {
+  flex: 1;
+}
+
+/* Retire le left/top de .atom-animation pour l’alignement */
+.solar-system {
+  position: relative;
+  width: 320px;   /* augmenté */
+  height: 320px;  /* augmenté */
+  margin: 10px;
+  left: -200px;        /* retire le décalage */
+  top: 400px;
+}
+
+.animation-description {
+  text-align: center;
+  margin-top: auto;
+  font-size: 1.2em;
+  color: #333;
+  position: relative;
+    left: -400px;
+    max-width: 600px;
+    top: 100px;
+}
+
+.animation-description-solar {
+  text-align: center;
+  margin-top: auto;
+  font-size: 1.2em;
+  color: #333;
+  position: relative;
+    left: -490px;
+    max-width: 600px;
+    top: 450px;
+}
