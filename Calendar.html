@@ -3,127 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editable Annual Calendar</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <title>Annual Calendar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<header>
-  <h1>Annual Calendar (September → August) 2025/2026</h1>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
 
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: #f8f9fa;
+    }
+    .month-card {
+      min-height: 200px;
+        background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+    }
+
+.month-card:hover {
+  transform: scale(1.05);
+}
+
+  h1 {
+    font-family: 'Merriweather', serif;
+    margin-bottom:  80px;
+  }
+  </style>
+</head>
+<body>
+
+<header class="text-center my-4">
+  <h1>Annual Calendar (September → August) 2025/2026</h1>
 </header>
 
-<main class="calendar-wrapper">
-  <div class="calendar-grid" id="calendar-year">
+<main class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4" id="calendar-year">
+    <!-- Months will be inserted here -->
+  </div>
+</main>
 
 <script>
 const months = [
-  {num: 9, name: "September", tasks: ["Quantum mechanics", "Review integrals"]},
-  {num:10, name: "October", tasks: ["C++ Project"]},
-  {num:11, name: "November", tasks: ["Advanced algebra"]},
-  {num:12, name: "December", tasks: []},
-  {num:1, name: "January", tasks: []},
-  {num:2, name: "February", tasks: []},
-  {num:3, name: "March", tasks: []},
-  {num:4, name: "April", tasks: []},
-  {num:5, name: "May", tasks: []},
-  {num:6, name: "June", tasks: []},
-  {num:7, name: "July", tasks: []},
-  {num:8, name: "August", tasks: []}
+  {num: 9, name: "September", tasks: ["Quantum mechanics Cohen-Tannoudji / Texier", "Linear algebra by Sheldon Axler"]},
+  {num:10, name: "October", tasks: ["Quantum mechanics Cohen-Tannoudji / Texier", "Linear algebra by Sheldon Axler and An introduction to manifolds by Loring Tu"]},
+  {num:11, name: "November", tasks: ["Quantum mechanics Cohen-Tannoudji / Texier", "Functional Analysis by Brezis An introduction to manifolds by Loring Tu"]},
+  {num:12, name: "December", tasks: ["Quantum mechanics Cohen-Tannoudji / Texier", "Functional Analysis by Brezis"]},
+  {num:1, name: "January", tasks: ["Special relativity", "Functional Analysis by Brezis"]},
+  {num:2, name: "February", tasks: ["Special relativity", "Functional Analysis by Brezis"]},
+  {num:3, name: "March", tasks: ["Special relativity applications eletromagnetism", "Functional Analysis by Brezis"]},
+  {num:4, name: "April", tasks: ["Special relativity applications eletromagnetism", "Differential Geometry by Loring Tu"]},
+  {num:5, name: "May", tasks: ["Particles and nuclei", "Differential Geometry by Loring Tu"]},
+  {num:6, name: "June", tasks: ["Particles and nuclei", "Differential Geometry by Loring Tu"]},
+  {num:7, name: "July", tasks: ["Particles and nuclei"]},
+  {num:8, name: "August", tasks: ["Spacetime and Geometry: An Introduction to General Relativity by Sean Carroll"]}
 ];
-
-// Load tasks from localStorage if they exist
-let savedTasks = JSON.parse(localStorage.getItem("annualTasks")) || {};
-months.forEach(m => {
-  if(savedTasks[m.num]) m.tasks = savedTasks[m.num];
-});
 
 const container = document.getElementById("calendar-year");
 
 months.forEach(month => {
   const div = document.createElement("div");
-  div.className = "month-card";
+  div.className = "col";
 
-  const h2 = document.createElement("h2");
+  const card = document.createElement("div");
+  card.className = "card month-card h-100 shadow-sm";
+
+  const cardBody = document.createElement("div");
+  cardBody.className = "card-body";
+
+  const h2 = document.createElement("h5");
+  h2.className = "card-title";
   h2.textContent = month.name;
-  div.appendChild(h2);
+  cardBody.appendChild(h2);
 
-  const ul = document.createElement("ul");
-
-  // Add existing tasks
-  month.tasks.forEach(task => {
-    const li = document.createElement("li");
-    li.textContent = task;
-    li.contentEditable = true;
-    li.addEventListener("input", saveTasks);
-    ul.appendChild(li);
-  });
-
-  // Field for new task
-  const newLi = document.createElement("li");
-  newLi.contentEditable = true;
-  newLi.textContent = "Add a task...";
-  newLi.style.fontStyle = "italic";
-
-  newLi.addEventListener("focus", () => { 
-    if(newLi.textContent === "Add a task..."){
-      newLi.textContent = ""; 
-      newLi.style.fontStyle = "normal"; 
-    }
-  });
-
-  newLi.addEventListener("blur", () => {
-    const text = newLi.textContent.trim();
-    if(text !== ""){
+  if(month.tasks.length > 0){
+    const ul = document.createElement("ul");
+    ul.className = "list-group list-group-flush mt-2";
+    month.tasks.forEach(task => {
       const li = document.createElement("li");
-      li.textContent = text;
-      li.contentEditable = true;
-      li.addEventListener("input", saveTasks);
-      ul.insertBefore(li, newLi);
-      newLi.textContent = "Add a task...";
-      newLi.style.fontStyle = "italic";
-      saveTasks();
-    } else {
-      newLi.textContent = "Add a task...";
-      newLi.style.fontStyle = "italic";
-    }
-  });
+      li.className = "list-group-item";
+      li.textContent = task;
+      ul.appendChild(li);
+    });
+    cardBody.appendChild(ul);
+  }
 
-  ul.appendChild(newLi);
-  div.appendChild(ul);
+  card.appendChild(cardBody);
+  div.appendChild(card);
   container.appendChild(div);
 });
-
-// Automatic save and deletion
-function saveTasks(){
-  const allTasks = {};
-  document.querySelectorAll(".month-card").forEach(div => {
-    const monthName = div.querySelector("h2").textContent;
-    const monthNum = months.find(m => m.name === monthName).num;
-
-    const lis = Array.from(div.querySelectorAll("ul li"));
-    const tasks = [];
-
-    lis.forEach(li => {
-      const text = li.textContent.trim();
-      if(text === "Add a task...") return;
-
-      if(text === "") {
-        li.remove(); // remove empty tasks
-      } else {
-        tasks.push(text);
-      }
-    });
-
-    allTasks[monthNum] = tasks;
-  });
-
-  localStorage.setItem("annualTasks", JSON.stringify(allTasks));
-}
 </script>
 
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

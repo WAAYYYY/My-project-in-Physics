@@ -1,192 +1,107 @@
-/* Style général */
-    body {
-      font-family: 'Merriweather', sans-serif;
-      background-color: #f7f7f7;
-      color: #201616;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      color: rgb(0, 0, 0);
-      padding: 20px;
-      text-align: center;
-    }
-    nav{
-        position: relative;
-        text-align: left;
-        left: 170px;
-        display: flex;
-        flex-direction: column; /* empile les liens verticalement */
-        align-items: flex-start; /* aligne les liens à gauche */
-        padding: 10px; /* espace autour */
-        
-    }
-    nav a {
-      color: rgb(0, 0, 0);
-      margin: 15px 0;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 30px;
-      transition: transform 0.5s; /* animation douce */
-      
-    }
-    
-    nav a:hover {
-      transform: scale(1.2); /* grossit le texte de 20% */
-    }
-
-    main {
-      padding: 20px;
-      max-width: 900px;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h1, h2 {
-      font-family: 'Merriweather', serif;
-    }
-
-    /* Animations CSS */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .titre {
-        position: relative;
-        text-align: left;
-        left: 200px;
-    }
-
-    button {
-      background-color: #3498db;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.3s, background-color 0.3s;
-      margin-top: 10px;
-    }
-
-    .paragraphe{
-        position: relative;/* rien à droite ni gauche */
-        text-align: left;
-        left : 200px;
-        }
-
-    button:hover {
-      transform: scale(1.1);
-      background-color: #2980b9;
-    }
-
-    #animationBox {
-      width: 50px;
-      height: 50px;
-      background: red;
-      margin: 20px auto;
-      position: relative;
-    }
-
-    .note {
-      background: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-    }
-
-    footer {
-      background-color: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
-
-
-
-.image {
-  display: block;
-  margin: 150px 0 20px 200px;  /* garde ton style actuel */
-  max-width: 170px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+body {
+  font-family: 'Merriweather', sans-serif;
+  background-color: #f7f7f7;
+  color: #201616;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-.section-image-texte {
-  display: block; /* chaque .image-texte-row sera en colonne */
-  gap: 0;         /* retire l'espace horizontal */
+/* Particles Background */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.7;
 }
 
-.image-texte-row {
+header {
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  text-align: center;
+}
+
+/* Main layout responsive */
+.ligne-texte-atom {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: -50px; /* espace entre chaque image+texte */
-}
-.texte {
-  max-width: 500px;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.texte-baisse {
-  position: relative;
-  top: 20px; /* déplace le titre 50px vers le bas */
+.texte-gauche {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.titre {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+.titre-gauche {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: 'Merriweather', serif;
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-bottom: 100px;
 }
 
 
-    /* If you want to style a navigation bar horizontally, use the nav selector */
-    nav.horizontal {
-    position: relative;
-    text-align: left;
-    left: 175px;
-    display: flex;
-    flex-direction: row; /* empile les liens horizontalement*/
-    align-items: flex-start; /* aligne les liens à gauche */
-    padding: 10px; /* espace autour */
-    }
-
-    nav a {
-      color: rgb(0, 0, 0);
-      margin: 15px 15px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 25px;
-      transition: transform 0.5s; /* animation douce */
-      
-    }
-
-    .Sous-titre{
-        position: relative;
-        text-align: left;
-        left: 200px;
-        font-size: 60px;
-        top: 70px;
-    }
-
-
-
-
-/* Nouvelle grille pour le calendrier */
-.calendar-wrapper {
-  display: flex;
-  justify-content: center; /* centre la grille horizontalement */
-  width: 100%;
+.margin-top {
+  margin-top: 100px;
 }
 
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 40px;
-  max-width: 1200px;        /* limite la largeur totale */
-  margin-left: 1000px;       /* décale la grille vers la droite */
-  box-sizing: border-box;   /* évite que le margin fasse dépasser */
+
+
+nav {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  margin: 40px 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(2rem, 3vw, 2.2rem);
+  transition: transform 0.5s;
+}
+
+nav a:hover {
+  transform: scale(1.2);
+}
+
+.Sous-titre {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-family: 'Merriweather', serif;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.container-custom {
+  display: flex;             
+  align-items: center;       
+  gap: 40px;                 /* Espace entre image et texte */
+}
+
+.container-custom .text {
+  flex: 1;                   
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.container-custom .image img {
+  max-width: 300px; /* Taille max en pixels */
+  width: 100%;      /* S’adapte au conteneur */
+  height: auto;     /* Garde les proportions */
 }
 
 
@@ -228,27 +143,21 @@ li:focus {
   outline: 2px solid #3498db; 
 }
 
-
-/* Style pour les particules */
-
-
-#particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* les clics passent au-dessus */
-  z-index: 0; /* derrière le contenu */
+/* Atom Animation */
+.atom-animation {
+  position: relative;
+  width: 0px;
+  height: 0x;
+  left: 420px;
+  top: 40px;   
 }
-
 
 .nucleus {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 64px;    /* augmenté */
-  height: 64px;   /* augmenté */
+  width: 64px;
+  height: 64px;
   background: #f10000;
   border-radius: 50%;
   transform: translate(-50%, -50%);
@@ -265,26 +174,28 @@ li:focus {
 }
 
 .orbit1 {
-  width: 240px;   /* augmenté */
+  width: 240px;
   height: 240px;
   animation: spin-orbit1 3s linear infinite;
 }
+
 .orbit2 {
-  width: 180px;   /* augmenté */
+  width: 180px;
   height: 180px;
   animation: spin-orbit2 2.2s linear infinite;
 }
+
 .orbit3 {
-  width: 120px;   /* augmenté */
+  width: 120px;
   height: 120px;
   animation: spin-orbit3 1.5s linear infinite;
 }
 
 .electron {
   position: absolute;
-  top: -12px;     /* adapté */
+  top: -12px;
   left: 50%;
-  width: 28px;    /* augmenté */
+  width: 28px;
   height: 28px;
   background: #00aaff;
   border-radius: 50%;
@@ -302,33 +213,31 @@ li:focus {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-
-.ligne-texte-atom {
-  display: flex;
-  align-items: center; /* centre verticalement */
-  gap: 40px;           /* espace entre texte et atome */
-}
-
-.texte-gauche {
-  flex: 1;
-}
-
-/* Retire le left/top de .atom-animation pour l’alignement */
-.atom-animation {
+.animation-description {
+  
+  font-size: 1.2em;
+  color: #000000;
   position: relative;
-  width: 320px;   /* augmenté */
-  height: 320px;  /* augmenté */
-  margin: 10px;
-  left: -100px;        /* retire le décalage */
-  top: 90px;
+  text-align: center;
+  left: 120px;
+  max-width: 600px;
+  top: 235px;
 }
 
+/* Solar System */
+.solar-system {
+  position: relative;
+  width: 0px;
+  height: 0px;
+  left: 1500px;
+  top: 0px;    
+}
 
 .sun {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60px;    /* augmenté */
+  width: 60px;
   height: 60px;
   background: #FFD700;
   border-radius: 50%;
@@ -337,39 +246,33 @@ li:focus {
   z-index: 2;
 }
 
-.orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 1px dashed #aaa;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .orbit-mercury {
-  width: 140px;   /* augmenté */
+  width: 140px;
   height: 140px;
   animation: orbit-mercury 3s linear infinite;
 }
+
 .orbit-venus {
-  width: 200px;   /* augmenté */
+  width: 200px;
   height: 200px;
   animation: orbit-venus 6s linear infinite;
 }
+
 .orbit-earth {
-  width: 260px;   /* augmenté */
+  width: 260px;
   height: 260px;
   animation: orbit-earth 9s linear infinite;
 }
+
 .orbit-mars {
-  width: 320px;   /* augmenté */
+  width: 320px;
   height: 320px;
   animation: orbit-mars 12s linear infinite;
 }
 
 .planet {
   position: absolute;
-  top: -16px;     /* adapté pour la taille des planètes */
+  top: -10px;
   left: 50%;
   transform: translate(-50%, 0);
   border-radius: 50%;
@@ -381,17 +284,20 @@ li:focus {
   height: 18px;
   background: #b1b1b1;
 }
+
 .venus {
   width: 26px;
   height: 26px;
   background: #e1c16e;
 }
+
 .earth {
   width: 30px;
   height: 30px;
   background: #3498db;
   box-shadow: 0 0 12px 4px #3498db;
 }
+
 .mars {
   width: 22px;
   height: 22px;
@@ -411,44 +317,180 @@ li:focus {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.ligne-texte-solar {
-  display: flex;
-  align-items: center; /* centre verticalement */
-  gap: 40px;           /* espace entre texte et atome */
-}
-
-.texte-gauche {
-  flex: 1;
-}
-
-/* Retire le left/top de .atom-animation pour l’alignement */
-.solar-system {
-  position: relative;
-  width: 320px;   /* augmenté */
-  height: 320px;  /* augmenté */
-  margin: 10px;
-  left: -200px;        /* retire le décalage */
-  top: 400px;
-}
-
-.animation-description {
-  text-align: center;
-  margin-top: auto;
-  font-size: 1.2em;
-  color: #333;
-  position: relative;
-    left: -400px;
-    max-width: 600px;
-    top: 100px;
-}
-
 .animation-description-solar {
   text-align: center;
-  margin-top: auto;
-  font-size: 1.2em;
-  color: #333;
   position: relative;
-    left: -490px;
-    max-width: 600px;
-    top: 450px;
+  font-size: 1.2em;
+  color: #000000;
+  left: 1350px;
+  max-width: 300px;
+  top: 190px;
+}
+
+/* Animations CSS */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ligne-texte-atom {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  .texte-gauche {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .atom-animation {
+    width: 200px;
+    height: 200px;
+    left: 0;
+    top: -50px;
+    margin: 0 auto;
+  }
+
+  .orbit1 { width: 120px; height: 120px; }
+  .orbit2 { width: 90px; height: 90px; }
+  .orbit3 { width: 60px; height: 60px; }
+
+  .nucleus {
+    width: 32px;
+    height: 32px;
+  }
+
+  .electron {
+    width: 14px;
+    height: 14px;
+    top: -7px;
+  }
+
+  .solar-system {
+    width: 200px;
+    height: 200px;
+    left: 0;
+    top: 30px;
+    margin: 0 auto;
+  }
+
+  .orbit-mercury { width: 80px; height: 80px; }
+  .orbit-venus { width: 110px; height: 110px; }
+  .orbit-earth { width: 140px; height: 140px; }
+  .orbit-mars { width: 170px; height: 170px; }
+
+  .sun {
+    width: 30px;
+    height: 30px;
+  }
+
+  .animation-description {
+    position: relative;
+    left: 0;
+    top: -50px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .animation-description-solar {
+    position: relative;
+    left: 0;
+    top: 40px;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .atom-animation {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orbit1 { width: 90px; height: 90px; }
+  .orbit2 { width: 70px; height: 70px; }
+  .orbit3 { width: 50px; height: 50px; }
+
+  .nucleus {
+    width: 24px;
+    height: 24px;
+  }
+
+  .electron {
+    width: 10px;
+    height: 10px;
+    top: -5px;
+  }
+
+  .solar-system {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orbit-mercury { width: 60px; height: 60px; }
+  .orbit-venus { width: 80px; height: 80px; }
+  .orbit-earth { width: 100px; height: 100px; }
+  .orbit-mars { width: 120px; height: 120px; }
+
+  .sun {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mercury { width: 8px; height: 8px; }
+  .venus { width: 10px; height: 10px; }
+  .earth { width: 12px; height: 12px; }
+  .mars { width: 10px; height: 10px; }
+}
+
+/* Autres styles */
+main {
+  padding: 20px;
+  max-width: 900px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h1, h2 {
+  font-family: 'Merriweather', serif;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background-color: #2980b9;
+}
+
+
+.note {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
 }
