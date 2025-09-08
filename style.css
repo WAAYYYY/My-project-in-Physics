@@ -108,18 +108,7 @@ nav a:hover {
 
 
 /* Cartes des mois */
-.month-card {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
 
-.month-card:hover {
-  transform: scale(1.05);
-}
 
 .month-card h2 { 
   text-align: center; 
