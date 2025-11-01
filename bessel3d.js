@@ -1,4 +1,4 @@
-// Fonction de Bessel J0 approximée
+
 function besselJ0(x) {
   if (x === 0) return 1;
   let sum = 0;
@@ -15,9 +15,9 @@ function factorial(n) {
   return f;
 }
 
-// Création des données
+
 const rMax = 10, n = 100;
-const x = Array.from({length: n}, (_, i) => -rMax + (2 * rMax * i) / (n - 1));
+const x = Array.from({ length: n }, (_, i) => -rMax + (2 * rMax * i) / (n - 1));
 const y = [...x];
 const z = [];
 
@@ -29,7 +29,6 @@ for (let i = 0; i < n; i++) {
   }
 }
 
-
 const data = [{
   z: z,
   x: x,
@@ -38,13 +37,38 @@ const data = [{
   colorscale: 'Viridis'
 }];
 
+
 const layout = {
-  title: 'Visualisation 3D of Bessel Function J₀(r)',
+  title: {
+    text: 'Bessel Function J₀(r)',
+    font: { size: 14 },
+    x: 0.5,
+    y: 0.9
+  },
+  margin: { l: 0, r: 0, b: 0, t: 30 }, 
+  autosize: true,
   scene: {
-    xaxis: {title: 'x'},
-    yaxis: {title: 'y'},
-    zaxis: {title: 'J₀(r)'}
+    aspectmode: 'manual',
+    aspectratio: { x: 1, y: 1, z: 1 },
+    xaxis: {
+      title: { text: 'x', font: { size: 9 } },
+      tickfont: { size: 8 }
+    },
+    yaxis: {
+      title: { text: 'y', font: { size: 9 } },
+      tickfont: { size: 8 }
+    },
+    zaxis: {
+      title: { text: 'J₀(r)', font: { size: 9 } },
+      tickfont: { size: 8 }
+    }
   }
 };
 
-Plotly.newPlot('besselContainer', data, layout);
+
+Plotly.newPlot('bessel3D', data, layout, { responsive: true });
+
+window.addEventListener('resize', () => {
+  Plotly.Plots.resize('bessel3D');
+});
+
