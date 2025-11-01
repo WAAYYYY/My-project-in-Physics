@@ -18,6 +18,15 @@ body {
   opacity: 0.7;
 }
 
+.vspace-2cm {
+  margin-top: 1cm;
+}
+
+.hspace_2cm {
+  margin-left: 1cm;
+}
+
+
 header {
   color: rgb(0, 0, 0);
   padding: 20px;

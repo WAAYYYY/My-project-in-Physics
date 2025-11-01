@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article : Particles trapped in a ring potential</title>
+
+  <!-- ✅ Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- ✅ Police Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!--  Ton CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ]
+        });"></script>
+  </script>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <!--  Ton script perso -->
+  <script defer src="bessel3d.js"></script>
+</head>
+
+
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: #f8f9fa;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeDown 0.6s forwards;
+    }
+
+    @keyframes fadeDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #besselContainer {
+      width: 100%;
+      height: 400px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+  </style>
+  
+</head>
+
+<body>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
+    <h2>Particles trapped in a ring potential</h2>
+    <div class="vspace-2cm">
+    <p>
+      The analysis of a particle trapped in a 2-dimensional circular ring is a classic exercise in quantum mechanics, however this exercise involves certain elements of analysis not used in a classical or infinite potential well.
+    </p>
+    <p>
+      So let's define the problem: we have a particle of mass \(m\) confined to move in a ring of radius \(r\). The potential energy \(V(r)\) follows : 
+    $$
+    V(r)=
+    \begin{cases}
+    0, & V_a < r < V_b,\\[6pt]
+    \infty, & r < V_a \ \text{or}\ r > V_b.
+    \end{cases}
+    $$
+    </p>
+<p>
+    So the particle is free to move in the ring between \(V_a\) and \(V_b\), but cannot escape outside this region due to the infinite potential walls. The time-independent Schrödinger equation in polar coordinates \((r, \theta)\) is given by: 
+    $$
+    -\frac{\hbar^2}{2m} \nabla^2 \psi(r, \theta) = E \psi(r, \theta)
+    $$
+    where \(\nabla^2\) is the Laplacian operator in polar coordinates, \(\hbar\) is the reduced Planck's constant, \(m\) is the mass of the particle, and \(E\) is the energy of the system. But we have to rewrite this equation in a other way because as we know :
+    $$
+    f(r\cos(\theta), r\sin(\theta)) = f(x,y) = g(r, \theta)
+    $$
+    So we have to use the chain rule to find the partial derivatives for the Laplacian operator :
+    $$
+    \frac{\partial g}{\partial r} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial r} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial \theta}
+    $$
+    $$\Leftrightarrow  \frac{\partial g}{\partial r} = \cos(\theta) \frac{\partial f}{\partial x} + \sin(\theta) \frac{\partial f}{\partial y}$$
+    And for the angle variable :
+    $$
+    \frac{\partial g}{\partial \theta} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial \theta} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial \theta}
+    $$
+    $$\Leftrightarrow  \frac{\partial g}{\partial \theta} = -r\sin(\theta) \frac{\partial f}{\partial x} + r\cos(\theta) \frac{\partial f}{\partial y}$$
+    By calculating the second derivatives and substituting them into the Laplacian operator, we obtain :
+    $$
+    \nabla^2 = \frac{\partial^2}{\partial r^2} + \frac{1}{r} \frac{\partial}{\partial r} + \frac{1}{r^2} \frac{\partial^2}{\partial \theta^2}
+    $$
+    We can reorder \(\nabla^2\) to get this form:
+$$
+\nabla^2 = \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2}{\partial \theta^2}
+$$
+
+Now we can substitute this expression into the Schrödinger equation:
+$$
+-\frac{\hbar^2}{2m} \left[ \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial \psi}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 \psi}{\partial \theta^2} \right] = E \psi
+$$
+We will suppose a potential dependency only on the radial coordinate \(r\), so we can use the method of separation of variables by assuming that the wave function \(\psi(r, \theta)\) can be expressed as a product of two functions: one depending only on \(r\) and the other only on \(\theta\):
+$$
+\psi(r, \theta) = R(r) \Theta(\theta)$$
+Substituting this into the Schrödinger equation and dividing both sides by \(R(r) \Theta(\theta)\), we get:
+$$
+\frac{-\hbar^2}{2m} \left[ \frac{1}{r R(r)} \frac{d}{d r} \left( r \frac{d R(r)}{d r} \right) + \frac{1}{r^2 \Theta(\theta)} \frac{d^2 \Theta(\theta)}{d \theta^2} \right] = E
+$$
+This equation can be separated into two ordinary differential equations because the two part need to be equal to a constant. We can denote this constant as \(k^2\). So we have two equations:
+$$
+\frac{d^2 \Theta(\theta)}{d \theta^2} + k^2 \Theta(\theta) = 0
+$$
+And $$
+r^2 \frac{d}{d r} \left( r \frac{d R(r)}{d r} \right) + \left( \frac{2mE r^2}{\hbar^2} - k^2 \right) R(r) = 0
+$$
+So we have a periodic solution for the angular part: 
+$$
+\Theta(\theta) = A e^{i k \theta} + B e^{-i k \theta}
+$$
+Where \(A\) and \(B\) are constants determined by boundary conditions. Since the wave function must be single-valued, we have the condition that \(\Theta(\theta + 2\pi) = \Theta(\theta)\), which implies that \(k\) must be an integer: \(k = n\), where \(n = 0, \pm 1, \pm 2, \ldots\)
+For the radial part, we can rewrite the equation as:
+$$
+r^2 \frac{d^2 R(r)}{d r^2} + r \frac{d R(r)}{d r} + \left( \frac{2mE r^2}{\hbar^2} - n^2 \right) R(r) = 0
+$$
+We have to introduce the Bessel functions which is a function that often appears in problems with cylindrical symmetry.
+  <!-- Permet de créer un container avec bootstrap pour ensuite ecrire a coté de graphe ou image -->
+<div class="container py-5">
+  <div class="row align-items-center">
+
+<div id="besselContainer" style="width:40%;height:500px;margin:20px 0;"></div>
+
+<!-- <div class="col-md-6"> obligatoire pour ecrire à coté -->
+
+    <div class="col-md-6">
+    <div class="hspace-2cm">
+      <h3>Bessel Function \(J_0(r)\)</h3>
+      <p>
+        The Bessel functions are solution to a particular type of differential equation:
+        $$ x^2 \frac{d^2 y}{d x^2} + x \frac{d y}{d x} + (x^2 - \alpha^2) y = 0$$
+        \(\alpha\) is a constant that defines the order of the Bessel function and the shape of the solution. In our case, 
+        we are interested in the Bessel function of order zero, denoted as \(J_0(r)\), which corresponds to \(\alpha = 0\).
+      </p>
+
+       
+            The Bessel function of order zero, \(J_0(r)\), has oscillatory behavior similar to sine and cosine functions, but with an amplitude that decreases as \(r\) increases. This function is particularly important in problems involving circular or cylindrical symmetry, such as the one we are analyzing with the ring potential.
+            </p>
+</div>
+
+  </div>
+ <p>
+
+So the radial solution can be expressed in terms of Bessel functions:
+$$R(r) = C J_n\left( \sqrt{\frac{2mE}{\hbar^2}} r \right) + D Y_n\left( \sqrt{\frac{2mE}{\hbar^2}} r \right)$$
+Where \(C\) and \(D\) are constants determined by boundary conditions, and \(Y_n\) is the Bessel function of the second kind. However, since \(Y_n\) diverges at \(r = 0\), we typically set \(D = 0\) for physical solutions within the ring.
+
+Now we have to find the solution with de boundary conditions at \(r = a\) and \(r = b\):
+$$R(a) = 0 \quad \text{and} \quad R(b) = 0$$
+But here we have a ring so \(Y_n\) is not divergent so we have to keep it. So we have to solve the following system of equations:
+$$
+\begin{cases}
+C J_n\left( \sqrt{\frac{2mE}{\hbar^2}} a \right) + D Y_n\left( \sqrt{\frac{2mE}{\hbar^2}} a \right) = 0\\[6pt]
+C J_n\left( \sqrt{\frac{2mE}{\hbar^2}} b \right) + D Y_n\left( \sqrt{\frac{2mE}{\hbar^2}} b \right) = 0
+\end{cases}
+$$
+For non-trivial solutions (here \(C\) and \(D\) are not both zero), the determinant of the coefficients must be zero,
+so \[
+\begin{vmatrix}
+J_n(ka) & Y_n(ka) \\
+J_n(kb) & Y_n(kb)
+\end{vmatrix} = 
+J_n(ka) Y_n(kb) - J_n(kb) Y_n(ka) = 0
+\] 
+leading to the transcendental equation:
+
+</p>
+</body>
+</html>
