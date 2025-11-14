@@ -1,0 +1,45 @@
+/* Style du bouton */
+.toggle-btn {
+  background-color: #4CAF50;
+  color: white;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  display: inline-block; /* important : pas 100% largeur */
+  width: auto;  
+  transition: background-color 0.3s;
+  transition: transform 0.3s;
+}
+
+.toggle-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.1); 
+}
+
+
+
+/* Contenu caché */
+.toggle-content {
+  max-height: 0;
+  overflow: hidden;
+  color: #5f5c5c;
+  padding: 0 10px;
+  border: 1px solid #413f3f;
+  font-family: monospace;
+  overflow-x: auto;
+  border-radius: 4px;
+  transition: max-height 0.7s ease-out, padding 0.3s ease-out;
+}
+
+.toggle-content pre {
+  margin: 0;
+  white-space: pre;   /* <-- keep le format original */
+  overflow-x: auto;
+}
+
+
+
