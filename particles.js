@@ -46,7 +46,7 @@ window.addEventListener('load', () => {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-      ctx.fillStyle = 'rgb(0, 0, 0)';
+      ctx.fillStyle = 'rgba(0, 0, 0, 1)';
       ctx.fill();
     });
 

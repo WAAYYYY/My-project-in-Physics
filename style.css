@@ -1,11 +1,12 @@
 body {
   font-family: 'Merriweather', sans-serif;
-  background-color: #f7f7f7;
-  color: #201616;
+  background-color: #ffffff; /* fallback */
+  color: #000000;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
+
 
 
 #particles {
@@ -47,6 +48,12 @@ canvas {
   margin-left: 1cm;
 }
 
+h1.titre{
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: 'Merriweather', serif;
+  text-align: center;
+  margin-top: 5px;
+}
 
 header {
   color: rgb(0, 0, 0);
@@ -140,6 +147,7 @@ nav {
 nav a {
   color: rgb(0, 0, 0);
   margin: 40px 50px;
+  text-align: center;
   text-decoration: none;
   font-weight: bold;
   font-size: clamp(2rem, 3vw, 2.2rem);
@@ -206,10 +214,9 @@ li:focus {
 /* Atom Animation */
 .atom-animation {
   position: relative;
-  width: 0px;
-  height: 0x;
-  left: 420px;
-  top: 40px;   
+  margin-right : 700px;
+  margin-top: 90px;
+  z-index: -1;   
 }
 
 .nucleus {
@@ -274,23 +281,18 @@ li:focus {
 }
 
 .animation-description {
-  
-  font-size: 1.2em;
-  color: #000000;
   position: relative;
-  text-align: center;
-  left: 120px;
-  max-width: 600px;
-  top: 235px;
+  font-size: 1.2em;
+  color: #fbfbfb;
+  margin-right: 1px;
+  margin-top: 10px;
 }
 
 /* Solar System */
 .solar-system {
   position: relative;
-  width: 0px;
-  height: 0px;
-  left: 1500px;
-  top: 0px;    
+  margin-left : 700px;
+  margin-top: 5px;      
 }
 
 .sun {
@@ -381,10 +383,9 @@ li:focus {
   text-align: center;
   position: relative;
   font-size: 1.2em;
-  color: #000000;
-  left: 1350px;
-  max-width: 300px;
-  top: 190px;
+  color: #ffffff;
+  margin-left : 710px;
+  margin-top: 180px;  
 }
 
 /* Animations CSS */
