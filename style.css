@@ -63,7 +63,7 @@ header {
   text-align: center;
 }
 
-/* Main layout responsive */
+
 .ligne-texte-atom {
   display: flex;
   align-items: center;
@@ -92,7 +92,7 @@ header {
 
 
 text{
-  display: block; /* devient comme un <div> ou <p> */
+  display: block; 
   white-space: pre-line;
   font-size: 28px;
   font-family: 'Merriweather', serif;
@@ -107,13 +107,13 @@ text{
 .logos {
   display: flex;            /* aligne en ligne */
   justify-content: center;  /* centre horizontalement */
-  align-items: center;      /* centre verticalement si besoin */
+  align-items: center;      /* centre verticalement si g besoin */
   gap: 20px;                /* espace entre les logos */
-  margin-top: 20px;         /* espace au-dessus */
+  margin-top: 20px;         /* espace au dessus */
 }
 
 .logos a img {
-  width: 40px;              /* taille des logos */
+  width: 40px;              /* taille  logos */
   height: auto;
   transition: transform 0.3s;
 }
@@ -170,7 +170,7 @@ nav a:hover {
 .container-custom {
   display: flex;             
   align-items: center;       
-  gap: 40px;                 /* Espace entre image et texte */
+  gap: 40px;                 /* espace entre image et texte */
 }
 
 .container-custom .text {
@@ -188,7 +188,7 @@ nav a:hover {
 
 
 
-/* Cartes des mois */
+/* mois */
 
 
 .month-card h2 { 
@@ -390,7 +390,7 @@ li:focus {
   margin-top: 180px;  
 }
 
-/* Animations CSS */
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 2s forwards;
@@ -400,7 +400,7 @@ li:focus {
   to { opacity: 1; }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .ligne-texte-atom {
     flex-direction: column;
