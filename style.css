@@ -42,7 +42,9 @@ canvas {
 .vspace-2cm {
   margin-top: 1cm;
 }
-
+.vspace-3cm {
+  margin-top: 2cm;
+}
 
 .hspace_2cm {
   margin-left: 1cm;

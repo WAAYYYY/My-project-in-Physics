@@ -37,7 +37,8 @@
 
 .toggle-content pre {
   margin: 0;
-  white-space: pre;   /* <-- keep le format original */
+  white-space: pre;   /* <-- keep 
+  le format original */
   overflow-x: auto;
 }
 

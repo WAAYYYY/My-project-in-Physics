@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article : Particles trapped in a ring potential</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Police Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- Highlight.js -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!--CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_Ring_potential.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ]
+        });"></script>
+  </script>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <!-- script -->
+  <script defer src="bessel3d.js"></script>
+</head>
+
+
+
+
+    <!-- Style -->
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.6;
+            padding: 40px;
+            background-color: #fafafa;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        .definition, .theorem, .remark {
+            border-left: 4px solid #444;
+            padding-left: 15px;
+            margin: 20px 0;
+            background: #f2f2f2;
+        }
+
+        .theorem {
+            border-color: #8b0000;
+        }
+
+        .remark {
+            border-color: #006400;
+            font-style: italic;
+        }
+
+        .references {
+            margin-left: 1.5rem;
+        }
+
+        .references li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        .justify {
+            text-align: justify;       
+            text-justify: inter-word;  
+            margin-bottom: 1.5rem;    
+        }
+    </style>
+
+<body>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
+    <h1>Hairy Ball Theorem</h1>
+    <div class="vspace-3cm">
+    
+    <p>
+        <h2><b>Introduction and motivation</b></h2>
+<div class="justify">
+<div class="vspace-2cm">
+Vector fields play a central role in differential geometry. They naturally arise in the description of preferred directions on a manifold, velocity fields, and flows associated with differential equations. Given a differentiable manifold, a fundamental question is whether one can define a continuous tangent vector field that is nowhere vanishing.
+
+Locally, this question presents no difficulty. By definition, a differentiable manifold is locally diffeomorphic to Euclidean space, on which nonvanishing continuous vector fields can always be constructed. However, the existence of such a field at the global level depends on the topology of the manifold. Global obstructions may appear, revealing a deep interplay between local geometry and global structure.
+
+The hairy ball theorem provides a striking illustration of this local-global contrast. It states that there exists no continuous tangent vector field on the sphere 
+$S^2$
+that is nonzero everywhere. Intuitively, this result can be interpreted as the impossibility of “combing” a sphere without creating at least one singular point where the field vanishes.
+
+The purpose of this article is to present the hairy ball theorem within the elementary framework of differential geometry. After reviewing the necessary notions concerning tangent vector fields, we give a rigorous proof of the theorem and place it in context through examples and comparisons with other manifolds. This result serves as a first illustration of how global topological properties constrain the existence of vector fields on a manifold.
+</div>
+</div>
+<hr>
+<div class="justify">
+<h2><b>Definitions and examples</b></h2>
+
+<div class="definition"><strong>[Topological Manifold]</strong>
+	A <em>topological manifold</em> of dimension $n$ is a Hausdorff, second-countable topological space $M$ such that every point $p \in M$ has an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$.
+</div>
+
+
+<div class="definition"><strong>[Smooth Manifold]</strong>
+	A <em>smooth manifold</em> is a topological manifold $M$ equipped with a smooth atlas whose transition maps are smooth.
+</div>
+
+<div class="definition"><strong>[Tangent Space]</strong>
+	Let $M$ be a smooth manifold and let $p \in M$.  
+	The <em>tangent space</em> of $M$ at $p$, denoted $T_p M$, is the vector space of derivations at $p$, that is, linear maps
+	\[
+	v : C^\infty(M) \to \mathbb{R}
+	\]
+	satisfying the Leibniz rule
+	\[
+	v(fg) = f(p)v(g) + g(p)v(f),
+	\]
+	for all $f,g \in C^\infty(M)$.
+</div>
+
+<div class="definition"><strong>[Tangent fiber]</strong>
+	The <em>tangent fiber</em> of a smooth manifold $M$ is the disjoint union
+	\[
+	TM = \bigsqcup_{p \in M} T_p M,
+	\]
+	endowed with a natural smooth manifold structure such that the projection
+	\[
+	\pi : TM \to M
+	\]
+	defined by $\pi(v) = p$ for $v \in T_p M$ is a smooth map.
+</div>
+
+<div class="definition"><strong>[Vector Field]</strong>
+	A <em>vector field</em> on a smooth manifold $M$ is a map
+	\[
+	X : M \to TM
+	\]
+	such that
+	\[
+	\pi \circ X = \mathrm{id}_M.
+	\]
+	Equivalently, $X(p) \in T_p M$ for all $p \in M$.
+</div>
+
+<div class="definition"><strong>[Continuous and Smooth Vector Fields]</strong>
+	A vector field $X : M \to TM$ is said to be
+	<ul>
+		<li><em>continuous</em> if $X$ is continuous as a map between topological spaces,
+		<li><em>smooth</em> if $X$ is smooth as a map between smooth manifolds.
+	</ul>
+</div>
+
+<div class="definition"><strong>[Zero of a Vector Field]</strong>
+	Let $X$ be a vector field on $M$.  
+	A point $p \in M$ is called a <em>zero</em> (or singular point) of $X$ if
+	\[
+	X(p) = 0 \in T_p M.
+	\]
+	The vector field $X$ is said to be <em>nowhere vanishing</em> if it has no zeros.
+</div>
+
+<div class="definition"><strong>[Section of the Tangent fiber]</strong>
+	A <em>section</em> of the tangent fiber $TM$ is a map
+	\[
+	s : M \to TM
+	\]
+	such that
+	\[
+	\pi \circ s = \mathrm{id}_M.
+	\]
+	Thus, a vector field on $M$ is precisely a section of the tangent fiber.
+</div>
+<hr>
+<h2><strong>Basic exemples</strong></h2>
+
+<div class="vspace-2cm"></div>
+
+<h3><strong>Topologie of a disk</strong></h3>
+Let's first take the example of a disk; we construct a disk such that
+\[
+f : D^2 \to D^2
+\]
+We can therefore say that the disk $D^2$ is constructible at a point
+\[
+D^2 \simeq \left\{point\right\}
+\]
+Any path can be constantly deformed towards any other point, so all loops are homotopic to a loop.
+\[
+\pi_1(D^2) = 0
+\]
+<h3><strong>Topologie of a cylinder</strong></h3>
+For the cylinder, we can construct a cylinder such that
+\[
+C = S^1 \times  \left[ 0,1\right] 
+\]
+it's not contractible to a point and it deformation by only retractation 
+\[
+C \simeq S^1 \quad \text{So   } \pi_1(C) = \mathbb{Z}
+\]
+There are paths that wind around the cylinder.
+They have a well-defined number of turns.
+On a cylinder, a field can have a non-zero winding along the circular direction.
+But there is still no local obstruction.
+One can have a field with no zeros everywhere on the cylinder.
+
+<h3><strong>Topologie of a tore</strong></h3>
+For a tore, we can construct a tore such that
+\[
+T^2 = S \times S
+\]
+For the tore we have have two direction of loop, so
+\[
+\pi_1(T^2) = \mathbb{Z} \times \mathbb{Z}
+\]
+
+Many non-zero continuous vector fields exist on the torus $T^2$ so there are many windings, but no topological obstructions unlike on the sphere.
+Therefore:
+<div class="vspace-2cm"></div>
+On $T^2$, there exist non-zero tangent vector fields everywhere. On $S^2$, it is impossible <em>(hairy ball theorem)</em>
+<hr>
+
+<h2><strong>Hairy ball theorem</strong></h2>
+<div class="vspace-2cm"></div>
+<div class="theorem">[Hairy ball theorem]
+	
+	We Suppose $U$ a continious vector space on $S^2$, there is $p \in S^2$ where $U(p) = 0$
+	
+	(It is impossible to comb a sphere covered in hair evenly without creating at least one cowlick or bald spot.)
+</div>
+
+<h2><strong>Proof of the theorem</strong></h2>
+<em>Proof</em>.
+The proof relies on a topological obstruction detected by the winding number of a vector field along the equator.
+
+We assume for contradiction that there is a continuous tangent vector field 
+\[
+X : S^2 \to TS^2
+\]
+which is nowhere vanishing, we will restric $X$ to the equator $S\subset S^2$, and $X$ never vanishes, so we normalize it to have a continuous map
+\[
+f : S^1 \to S^1
+\]
+Whose it winding number is well-defined.
+We know that the equator is the common boundary of the northern and southern hemispheres, each homeomorphic to a disk.
+But since $X$ is nowhere vanishing, its restriction to the equator extends continuously to each hemisphere without zeros, because a disk is contractible, so any continuous nowhere-vanishing vector field definied on it induces a map on the boundary circle with zero winding number, so we have 
+\[
+deg(f) = 0
+\]
+
+<figure class="text-center">
+  <img src="img\4.png" width="400">
+  <figcaption>
+    Schematic representation of Sphere $S^2$ (homeomorphic to two disks).
+  </figcaption>
+</figure>
+However, the geometry of the sphere forces any continuous tangent vector field along the equator to rotate once when going around the circle.
+So the tangent planes along the equator rotate by one full turn, which implies thath the normalized filed must have a winding number equals to 
+\[
+deg(f) = \pm 1
+\]
+We have obtained a contradiction here
+
+\[
+\deg(f)=0
+\quad \text{and} \quad
+\deg(f)=\pm 1,
+\]
+So the assumption that $X$ is nowhere vanishing is must be false.
+So we can conclude that any continuous tangent vector field on $S^2$ must vanish at least at one point.
+<div class="vspace-2cm"></div>
+<div class="remark">
+	We have to specify so key ideas,
+	A disk carries no topological obstruction, so all rotations can be removed, but a sphere forces a nontrivial  rotation along the equator, so the zero of the vector field is unavidable.
+</div>
+
+
+
+<em>Local analytico-topological Proof</em>.
+We considere latitude circles $C_\varepsilon$ around the north-pole.
+The tangent field induced an application 
+\[
+f : C_\varepsilon \to S
+\]
+So if the winding is non-zero, then no single limiting direction exists when
+$\varepsilon \to 0$, For continuity at the pole, the following would be necessary:
+\[
+\lim_{r \to 0} X(r,\theta) \quad \text{is independent of } \theta.
+\]
+But a non-zero winding implies exactly the opposite.
+<div class="vspace-2cm"></div>
+
+<em>Geometrical Proof</em>.
+Let make $\overrightarrow{v}$ a smooth vector field on $S^2$, and it's nowhere-vanishing. For all p $\in S^2$, $\phi : [0,\pi]\to S^2$, the smooth parametric cirle (we defined that $\left\| \overrightarrow{v} \right\| = 1$), going from p to -p with $\overrightarrow{v}(p) \neq 0 $ at $t=0$, so we get :
+\[
+\phi_p(t) = \cos(t)p + \sin(t)\overrightarrow{v}
+\]
+We can say that $p\in M$ and $\overrightarrow{v}(p) \in T_pM$.
+\\
+Now we define the homotopy from identity map $id_{S^2} : S^2 \to S^2$ to the antipodal map $p \to -p$, we considere
+\[
+H : S^2 \times [0,1] \to S^2
+\]
+Such that $H(p,0) = p; H(p,1) = \phi_p(1) = -p$, So H define a smooth homotopy, but we know that the degre of the identity is equal to 1, $deg(id_{S^2}) = 1$ but for the antipodal map, $deg(A) = (-1)^{n+1}$, so for the sphere $S^2$, we get (for n = even numbers):
+\[
+deg(id_{S^2}) = 1 \neq deg(A) = (-1)^{2+1} = -1 
+\]
+Condratiction between the degre, so there is atleast one point where $\overrightarrow{v}(p) = 0$
+<div class="vspace-2cm"></div>
+<hr>
+<h2><b>Reformulation in terms of tangent fiber</b></h2>
+<div class="vspace-2cm"></div>
+The tangent fiber $TM$ of a smooth manifold is the disjoint union of all tangent spaces $T_pM$, together with a natural projection 
+\[
+\pi: TM \to M
+\]
+A continuous vector field on $M$ is a continuous section of the tangent fiber, that is a continuous map
+\[
+X: M \to TM
+\]
+such that 
+\[
+\pi(X(p)) = p \quad \text{for all p}\in M
+\]
+a vector field is equal to a section of the tangent fiber
+But A nowhere-vanishing vector field is a section $X$ such that
+\[
+X(p) \neq 0 \quad \text{for all p}\in M
+\]
+So, The tangent bundle $TS^2$ admits no continuous nowhere-vanishing section.
+\subsection{Hairy Ball Theorem (bundle formulation)}.
+The tangent bundle $TS^2$ of the 2-sphere admits no continuous nowhere-vanishing section. Equivalently, every continuous vector field on $S^2$ must vanish at some point.
+
+<div class="remark">
+The tangent bundle of the torus $T^2$ does admit a nowhere-vanishing section: there exist smooth vector fields on $T^2$ that never vanish.
+</div>
+<hr>
+<h2><b>Conclusion</b></h2>
+</div>
+<div class="vspace-2cm"></div>
+<div class="justify">
+In this project, we have explored the fundamental relationship between topology and vector fields on manifolds, with a particular focus on the Hairy Ball Theorem. We have seen that while locally, continuous tangent vector fields can always be defined without vanishing, the global topology of the manifold can impose strong constraints. 
+
+Through examples such as the disk, the cylinder, and the torus, we observed that topological obstructions depend critically on the structure of loops and the fundamental group. Disks, being contractible, allow nowhere-vanishing vector fields, whereas the torus admits non-vanishing vector fields along its two independent loops. In contrast, the 2-sphere exhibits a global obstruction: any continuous tangent vector field must vanish at least at one point, as formalized by the Hairy Ball Theorem. 
+
+We provided both a geometric and a topological proof of this theorem. The geometric intuition, using the rotation of tangent vectors along the equator and latitude circles, illustrates why a zero is unavoidable. The topological perspective, formulated in terms of tangent bundles, generalizes this result: the tangent bundle of \(S^2\) admits no continuous nowhere-vanishing section, while the torus admits such sections. 
+
+This study highlights the deep interplay between local and global properties in differential geometry. It shows how topology can fundamentally constrain the behavior of vector fields, providing an elegant and visually intuitive example of global topological phenomena. Understanding these concepts lays the groundwork for more advanced studies in manifold theory, vector bundles, and global analysis.
+</div>
+<hr>
+
+<h2><b>References</b></h2>
+
+  <ol class="references">
+    <li>
+      <strong>Loring W. Tu</strong>,
+      <em>Introduction to Manifolds</em>,
+      Universitext, Springer, 2011, pp. 48-81.
+    </li>
+
+    <li>
+      <strong>John Milnor</strong>,
+      “Analytic Proofs of the <em>Hairy Ball Theorem</em> and the Brouwer Fixed Point Theorem”,
+      <em>The American Mathematical Monthly</em>,
+      Vol. 85, No. 7 (Aug.-Sep. 1978), pp. 521-524.
+    </li>
+
+    <li>
+      <strong>Peter McGrath</strong>,
+      <em>An Extremely Short Proof of the Hairy Ball Theorem</em>,
+      Department of Mathematics, Brown University, pp. 502-503.
+    </li>
+
+    <li>
+      <strong>Brian Conrad</strong>,
+      <em>MATH 396: The \(C^{\infty}\) Hairy Ball Theorem</em>,
+      Stanford University, pp. 1-3.
+    </li>
+
+    <li>
+      <strong>W. Chinn</strong> and <strong>N. Steenrod</strong>,
+      <em>First Concepts of Topology</em>,
+      Mathematical Association of America,
+      Washington, DC, 1966.
+    </li>
+
+    <li>
+      <strong>E. Spanier</strong>,
+      <em>Algebraic Topology</em>,
+      McGraw-Hill, New York, 1966, pp. 151, 194.
+    </li>
+  </ol>
+</section>
+</p>
