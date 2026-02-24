@@ -24,6 +24,13 @@ window.addEventListener('load', () => {
     mouse.y = e.clientY;
   });
 
+  //  On lie le theme actuel à la couleur des particules
+  function getParticleColor() {
+    return document.documentElement.getAttribute('data-bs-theme') === 'dark'
+      ? 'rgba(255, 255, 255, 1)'
+      : 'rgba(0, 0, 0, 1)';
+  }
+
   function animate(){
     ctx.clearRect(0, 0, width, height);
 
@@ -46,7 +53,7 @@ window.addEventListener('load', () => {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+      ctx.fillStyle = getParticleColor(); // couleur dynamique
       ctx.fill();
     });
 
@@ -59,4 +66,14 @@ window.addEventListener('load', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   });
+
+  // On a plus besoin de updateParticleColors() car getParticleColor() est appelé à chaque frame dans animate()
+  const observer = new MutationObserver(() => {
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-bs-theme']
+  });
+
 });
