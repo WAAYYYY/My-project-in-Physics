@@ -27,13 +27,3 @@ In this section, you will find some interesting exercises to read. The rest of t
 ### Profil
 
 I also added the profile section to know who i am and what and why i'm doing all this
-=======
-All the books and their descriptions that i have used for my studies in theoretical maths and physics (Differential Geometrie, Functionnal Analysies, Lie Algebra, Quantum Mechanics, Special and General Relativity).
-
-### My Time Table
-I created a time table to zjdzjdkdàz my studies, and be ready for september 2027. (i need to upfate the calendar for september 2026 - august 2027)
-
-### 
-
-
->>>>>>> bf3aced2980893cff55d364de462aa07f77c90bb
