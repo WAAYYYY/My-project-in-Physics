@@ -5,18 +5,18 @@ function saveTasks(){
     const monthName = div.querySelector("h2").textContent;
     const monthNum = months.find(m => m.name === monthName).num;
 
-    const lis = Array.from(div.querySelectorAll("ul li")); // copie du tableau
+    const lis = Array.from(div.querySelectorAll("ul li")); 
 
     const tasks = [];
 
     lis.forEach(li => {
       const text = li.textContent.trim();
 
-      // Ignorer le champ "Ajouter une tâche..."
+
       if(text === "Ajouter une tâche...") return;
 
       if(text === "") {
-        li.remove(); // supprime l'élément vide de l'UI
+        li.remove(); 
       } else {
         tasks.push(text);
       }

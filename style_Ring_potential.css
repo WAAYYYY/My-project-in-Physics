@@ -1,4 +1,4 @@
-/* Style du bouton */
+
 .toggle-btn {
   background-color: #4CAF50;
   color: white;
@@ -9,7 +9,7 @@
   font-size: 14px;
   margin-bottom: 5px;
   border-radius: 4px;
-  display: inline-block; /* important : pas 100% largeur */
+  display: inline-block; 
   width: auto;  
   transition: background-color 0.3s;
   transition: transform 0.3s;
@@ -22,7 +22,7 @@
 
 
 
-/* Contenu caché */
+
 .toggle-content {
   max-height: 0;
   overflow: hidden;
@@ -37,8 +37,8 @@
 
 .toggle-content pre {
   margin: 0;
-  white-space: pre;   /* <-- keep 
-  le format original */
+  white-space: pre;   
+
   overflow-x: auto;
 }
 
