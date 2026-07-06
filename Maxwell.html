@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article : Particles trapped in a ring potential</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Police Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- Highlight.js -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!--CSS -->  
+  <link rel="stylesheet" href="Night_mode.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_Ring_potential.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ]
+        });"></script>
+  </script>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <!-- script -->
+</head>
+
+  <script src="Night_mode.js"></script>
+
+
+    <!-- Style -->
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.6;
+            padding: 40px;
+            background-color: #fafafa;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        .definition, .theorem, .remark {
+            border-left: 4px solid #444;
+            padding-left: 15px;
+            margin: 20px 0;
+            background: #f2f2f2;
+        }
+
+        .theorem {
+            border-color: #8b0000;
+        }
+
+        .remark {
+            border-color: #006400;
+            font-style: italic;
+        }
+
+        .references {
+            margin-left: 1.5rem;
+        }
+
+        .references li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        .justify {
+            text-align: justify;       
+            text-justify: inter-word;  
+            margin-bottom: 1.5rem;    
+        }
+
+    italique {
+        font-style: italic;
+    }
+    </style>
+
+<body>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
+    <h1>Maxwell’s Equations in Differential Form</h1>
+<div class="text-center">
+By Adrien Semik Le Du Da Silva
+</div> 
+
+<div class="text-center">
+03/07/2026
+</div> 
+    <div class="vspace-3cm">
+    
+<p>
+    <div class="vspace-2cm"></div>
+    <h2><strong>Introduction</strong></h2>
+    <div class="vspace-2cm"></div>
+    <div class="justify">
+
+    <p>Maxwell’s equations are the four fundamental laws of electromagnetism. They unite electricity and
+magnetism to describe and understand electromagnetic fields, and they model the whole range of
+communication and energy technologies. In this short article, we will present the derivation of these
+equations from another perspective, namely in differential form, and explain why this representation
+is useful in many domains.</p>
+
+<div class="vspace-2cm"></div>
+<h2><strong>Physical setting and differential-form formulation</strong></h2>
+<div class="vspace-2cm"></div>
+
+<div class ="justify">
+    <p>
+In classical physics, the fields $\vec{E}$ and $\vec{B}$ can be derived from two potentials: the electric potential $V$ and the vector potential $\vec{A}$, such that:
+$$
+\begin{align}
+    \vec{B} &= \nabla \times \vec{A} \\
+    \vec{E} &= - \nabla V - \frac{\partial \vec{A}}{\partial t}
+\end{align}
+$$
+
+Then comes relativity, which introduces four-potentials, and therefore the unification in 4D. We combine $V$ and $\vec{A}$ into a single geometric object in four dimensions, a <italique>1-form potential</italique> called $A$, such that:
+$$
+\begin{equation}
+    A = A_x\,dx + A_y\,dy + A_z\,dz - V\,dt
+\end{equation}
+$$
+To obtain physical fields from this potential $A$, we apply the exterior derivative $d$.
+The exterior derivative is a fundamental tool in differential geometry and topology, generalizing the notions of gradient, divergence, and curl.
+For a 0-form, $df$ corresponds to the total differential of the function:
+$$
+\begin{equation}
+    df = \sum_{i=1}^{n} \frac{\partial f}{\partial x^i}dx^i
+\end{equation}
+$$
+Thus, by definition, $F = dA$. We can separate the spatial and temporal parts:
+$$
+\begin{equation}
+    F = d(A_{\text{space}} - Vdt) = d(A_{\text{space}}) - d(Vdt)
+\end{equation}
+$$
+
+We therefore differentiate the spatial part with respect to the spatial coordinates. The exterior derivative of a 1-form is equal to its curl. Thus:
+
+$$
+\begin{align}
+    A &= A_xdx + A_ydy + A_zdz \\
+    dA &= dA_x \wedge dx + dA_y \wedge dy + dA_z \wedge dz\\ 
+    \text{or for example} \\
+    dA_x &= \frac{\partial A_x}{\partial x}dx + \frac{\partial A_x}{\partial y}dy + \frac{\partial A_x}{\partial z}dz + \frac{\partial A_x}{\partial t}dt
+\end{align}
+$$
+By substituting (8) (same for $y$ and $z$) into (7) and rearranging the spatial part, we obtain:
+$$
+\begin{align}
+    dA = \left(\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right) dx \wedge dy
+    + \left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right)dy \wedge dz
+    + \left(\frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x}\right) dz \wedge dx
+\end{align}
+$$
+We clearly recognize the components of the curl. And we know that the curl of $\vec{A}$ is equal to the magnetic field $\vec{B}$. For the temporal part:
+$$
+\begin{align}
+    dA_{\text{temporal}} = - \left(\partial_tA_x + \partial_tA_y + \partial_tA_z \right) \wedge dt = - \partial_tA \wedge dt
+\end{align}
+$$
+Thus we can conclude that:
+$$
+\begin{equation}
+    d(A_{\text{space}}) = B
+\end{equation}
+$$
+and therefore:
+$$
+\begin{equation}
+    dA = B - \partial_tA \wedge dt
+\end{equation}
+$$
+Now we apply the exterior derivative to the product $Vdt$, using the graded Leibniz rule, and obtain:
+$$
+\begin{align}
+d(V\,dt) &= dV \wedge dt + V\,d(dt) \\
+         &= dV \wedge dt \\
+         &= \left(\frac{\partial V}{\partial x}dx + \frac{\partial V}{\partial y}dy + \frac{\partial V}{\partial z}dz + \frac{\partial V}{\partial t}dt\right)\wedge dt \\
+         &= \left(\frac{\partial V}{\partial x}dx + \frac{\partial V}{\partial y}dy + \frac{\partial V}{\partial z}dz\right)\wedge dt
+\end{align}
+$$
+Putting everything together, we obtain:
+$$
+\begin{align}
+    F &= B + \left(- \nabla V - \partial_tA \right) \wedge dt\\ 
+    F &= B + E \wedge dt
+\end{align}
+$$
+This is a <italique>2-form</italique> in $\mathbb{R}^4$.
+
+We can now introduce a second equation with the electric displacement $D$ and the magnetic field intensity $H$:
+$$
+\begin{align}
+    D &= \star \varepsilon_0 E\\
+    H &= \frac{1}{\mu_0} \star B
+\end{align}
+$$
+    </p>
+    </div>
+
+<div class="vspace-2cm"></div>
+<h2><strong>Hodge star and dual equations</strong></h2>
+<div class="vspace-2cm"></div>
+
+<div class ="justify">
+    <p>
+Let us now introduce the \textit{Hodge star}. It is an operator applied to the cotangent space of oriented Riemannian manifolds, and it allows, among other things, the definition of an $L^2$ norm on differential forms.
+To formalize:
+<div class="v-space-2cm"></div>
+<div class="definition"><strong>Definition :</strong>
+    Let $M$ be an oriented manifold of dimension $m$ and let $g$ be a pseudo-Riemannian metric. The Hodge star is an application
+    $$
+    \begin{equation}
+        \star : \Omega^k(M) \to \Omega^{n-k}(M),
+    \end{equation}
+    $$
+    defined as an isomorphism from $k$-forms to $(n-k)$-forms:
+    $$
+\begin{equation}
+    \alpha \wedge \beta = \left\langle \star \alpha , \beta \right\rangle_g \omega_0
+\end{equation}
+$$
+such that:
+$$
+\begin{equation}
+g(e_i,e_j) =
+\begin{cases}
+0 & \text{if } i \neq j, \\
+1 & \text{if } i = j \le p, \\
+-1 & \text{if } i = j > p.
+\end{cases}
+\end{equation}
+$$
+</div>
+
+
+Now that we have correctly defined the Hodge star, we can begin the computation of $\star F$:
+$$
+\begin{align}
+    \star F = \star B + \star \left(E \wedge dt \right)
+\end{align}
+$$
+
+We therefore need to compute $\star B$ and $\star \left(E \wedge dt \right)$. For this purpose, we choose a metric $g$ such that:
+$$
+\begin{equation}
+    g = c^2dt^2 - dx^2 - dy^2 - dz^2
+\end{equation}
+$$
+
+Let us now compute $\star \left(E \wedge dt \right)$. 
+
+We know that:
+$$
+\begin{align}
+    E \wedge dt &= \left(E_xdx + E_ydy +E_zdz \right) \wedge dt\\
+    E \wedge dt &= E_xdx\wedge dt + E_ydy \wedge dt+E_zdz \wedge dt
+\end{align}
+$$
+
+Now let us apply the Hodge star. However, there is a small subtlety in the calculation. We want to find the dual form of $E \wedge dt$, and for this the formula requires that for any form $\alpha$ of the same degree, we must have equation (22). For geometric reasons, we take the scalar product with itself because it is the fastest way to determine the sign of the norm and the dual form. Thus:
+
+$$
+\begin{align}
+    E \wedge dt = E_x\left(\left\langle dx\wedge dt;dx\wedge dt\right\rangle \cdot vol\right)
+    + E_y\left(\left\langle dy\wedge dt;dy\wedge dt\right\rangle \cdot vol\right)
+    + E_z\left(\left\langle dz\wedge dt;dz\wedge dt\right\rangle \cdot vol\right) 
+\end{align}
+$$
+
+with
+$$
+\begin{equation}
+    vol = \sqrt{\left| det(g) \right|}\cdot  dt \wedge dx \wedge dy \wedge dz = c\,dt \wedge dx \wedge dy \wedge dz
+\end{equation}
+$$
+<div class="v-space-2cm"></div>
+
+Let us start with $\left\langle dx\wedge dt;dx\wedge dt\right\rangle$
+$$
+\begin{align}
+    \left(dx \wedge dt \right) \wedge \star (dx \wedge dt) &= g^{tt} \cdot g^{xx} \cdot vol\\
+    &= -\frac{1}{c}dt \wedge dx \wedge dy \wedge dz \\
+    &= \frac{1}{c}dx \wedge dt \wedge dy \wedge dz \\
+\end{align}
+$$
+By identification, we get
+$$
+\begin{equation}
+    \star (dx \wedge dt) = \frac{1}{c}dy \wedge dz
+\end{equation}
+$$
+
+Next for $\left\langle dy\wedge dt;dy\wedge dt\right\rangle$
+$$
+\begin{align}
+    \left(dy \wedge dt \right) \wedge \star (dy \wedge dt) &= g^{tt} \cdot g^{yy} \cdot vol\\
+    &= -\frac{1}{c}dt \wedge dx \wedge dy \wedge dz \\
+    &= \frac{1}{c}dy \wedge dt \wedge dx \wedge dz \\
+\end{align}
+$$
+So
+$$
+\begin{equation}
+    \star (dy \wedge dt) = -\frac{1}{c}dx \wedge dz
+\end{equation}
+$$
+
+
+For the last case $\left\langle dz\wedge dt;dz\wedge dt\right\rangle$
+
+$$
+\begin{align}
+    \left(dz \wedge dt \right) \wedge \star (dz \wedge dt) &= g^{tt} \cdot g^{zz} \cdot vol\\
+    &= -\frac{1}{c}dt \wedge dx \wedge dy \wedge dz \\
+    &= -\frac{1}{c}dz \wedge dt \wedge dy \wedge dx \\
+\end{align}
+$$
+So
+$$
+\begin{equation}
+    \star (dz \wedge dt) = -\frac{1}{c}dy \wedge dx
+\end{equation}
+$$
+We thus obtain:
+$$
+\begin{equation}
+    \star_{4D} \left(E \wedge dt \right) = - \frac{1}{c} \star_{3D} E
+\end{equation}
+$$
+
+By repeating the same procedure for the magnetic field $B$, we obtain:
+$$
+\begin{equation}
+    \star_{4D} B = - c \left( \star_{3D} B \right) \wedge dt
+\end{equation}
+$$
+We can now substitute everything into equation (23) to obtain:
+$$
+\begin{equation}
+    \star F = -c \star B\wedge dt - \frac{1}{c} \star E
+\end{equation}
+$$    
+From equations (20) and (21), we can write:
+$$
+\begin{align}
+    \star E &= \frac{1}{\varepsilon_0 } D \text{ ; and }\\
+    \star B &= \mu_0H
+\end{align}
+$$
+Thus
+$$
+\begin{equation}
+    \star F = -c \mu_0H \wedge dt - \frac{1}{\varepsilon_0 c} D
+\end{equation}
+$$
+<div class="v-space-2cm"></div>
+
+We then notice that the dual space of $F$ is linked to the magnetic field intensity $H$ as well as to the electric displacement.
+We now multiply equation (49) by the differential $d$ such that:
+<div class="v-space-2cm"></div>
+$$
+\begin{align}
+    d\star F &= -c \mu_0(dH \wedge dt dH \wedge d(dt)) +  - \frac{1}{\varepsilon_0 c} dD\\
+    d\star F &=- c\mu_0SdH \wedge dt - \frac{1}{\varepsilon_0 c} dD\\
+    d\star F &= - c\mu_0 4\pi J\wedge dt - \frac{1}{\varepsilon_0 c} 4 \pi \rho \wedge dx \wedge dy \wedge dz\\
+    d\star F &= - \mu_0c 4 \pi \left(\rho \wedge dx \wedge dy \wedge dz -J\wedge dt \right)\\
+    d\star F &= - \mu_0c 4 \pi J\\
+    d^\star F &= \pm  \mu_0c 4 \pi \star J
+\end{align}
+$$
+Since $\frac{1}{\varepsilon_0 c} = \mu_0c$, $J = \rho \wedge dx \wedge dy \wedge dz -J\wedge dt $, and $\star d \star F = d^\star F$
+
+In vacuum, in the absence of charge, $J = 0$, so we obtain $d\star F = 0$, and therefore $d^\star F = 0$.
+
+
+Thus, we obtain these two equations which, in differential form on 4-dimensional spacetime, summarize the four Maxwell equations:
+$$
+\begin{equation}
+\begin{cases}
+    dF = 0\\
+    d^\star F = \pm  \mu_0c 4 \pi \star J
+\end{cases}
+\end{equation}
+$$
+</p>
+</div>
+
+<div class="vspace-2cm"></div>
+<h2><strong>Maxwell equations in vacuum</strong></h2>
+<div class="vspace-2cm"></div>
+
+<div class ="justify">
+    <p>
+    To understand how these equations correspond to derivatives with respect to space and time, we will use the <i>Hodge Laplacian</i> in vacuum ($J = 0$).
+
+<div class="definition"><strong>Definition :</strong>
+    On an oriented Riemannian manifold, we define the codifferential using the operator $\star$ such that in dimension $n$, for k-forms:
+    $$
+    \begin{equation}
+        d^\star = (-1)^{kp + n + 1} \star d \star
+    \end{equation}
+    $$
+    Thus the <i>Hodge Laplacian</i>:
+    $$
+    \begin{equation}
+        \Delta = (d + d^\star)^2 = dd^\star + d^\star d
+    \end{equation}
+    $$
+</div>
+
+We apply the <i>Hodge Laplacian</i> to $F$ such that what goes with the action of $d$ generates the first spatial derivatives linked to the curl, and the action of $d^*$ applies the Hodge star, differentiates, and reapplies the Hodge star:
+$$
+\begin{equation}
+\begin{cases}
+    dF d^\star= 0\\
+    d^\star Fd = 0
+\end{cases}
+\end{equation}
+$$
+
+By adding these two equations, we obtain:
+$$
+\begin{align}
+    dF d^\star + d^\star Fd  &= 0\\
+    (dd^\star + d^\star d)F &= 0
+\end{align}
+$$
+And we know that:
+$$
+\begin{align}
+(dd^\star + d^\star d) =& 
+\left( \frac{\partial^2 }{\partial x^2} + \frac{\partial^2 }{\partial y^2} + \frac{\partial^2 }{\partial z^2} - \frac{1}{c^2} \frac{\partial^2 }{\partial t^2} \right) dx \\
++ &\left( \frac{\partial^2 }{\partial x^2} + \frac{\partial^2 }{\partial y^2} + \frac{\partial^2 }{\partial z^2} - \frac{1}{c^2} \frac{\partial^2 }{\partial t^2} \right) dy \\
++ &\left( \frac{\partial^2 }{\partial x^2} + \frac{\partial^2 }{\partial y^2} + \frac{\partial^2 }{\partial z^2} - \frac{1}{c^2} \frac{\partial^2 }{\partial t^2} \right) dz \\
++ &\left( \frac{\partial^2 }{\partial x^2} + \frac{\partial^2 }{\partial y^2} + \frac{\partial^2 }{\partial z^2} - \frac{1}{c^2} \frac{\partial^2 }{\partial t^2} \right) dt
+\end{align}
+$$
+Then we can write:
+$$
+\begin{align}
+    (dd^\star + d^\star d) &= \left(\Delta_{(x,y,z)} - \frac{1}{c^2}\partial^2_t\right)\\
+    (dd^\star + d^\star d) F&= \left(\Delta_{(x,y,z)} - \frac{1}{c^2}\partial^2_t\right) F = 0  
+\end{align}
+$$
+
+</p>
+</div>
+
+<div class="vspace-2cm"></div>
+<h2><strong>Conclusion</strong></h2>
+<div class="vspace-2cm"></div>
+<div class ="justify">
+    <p>
+Thus equation (67) is the intrinsic geometric expression stating that electromagnetic waves propagate at the speed of light in vacuum. This equality demonstrates the power of differential geometry, with on the one hand a purely geometric expression on the left, which depends neither on the coordinates nor on the dimension, nor on the chosen metric. On the other hand, there is the concrete translation of our physical reference frame: Minkowski spacetime.
+    </p>
+</div>
+
+<div class="vspace-2cm"></div>
+<h2><strong>References</strong></h2>
+<div class="vspace-2cm"></div>
+
+<ol class="references">
+    <li><strong>Loring W. Tu</strong>, An Introduction to Manifolds. <em>Springer</em>.</li>
+    
+    <li><strong>Loring W. Tu</strong>, <em>Differential Geometry: Connections, Curvature, and Characteristic Classes</em>, Springer.</li>
+    
+    <li><strong>Yves Colin De Verdière</strong>, <em>Les équations de Maxwell</em>, Séminaire de Théorie spectrale et géométrie, tome 15 (1996-1997), p. 115-125</li>
+    
+    <li><strong>Stanford</strong>, <em>Math 396. Hodge-star operator</em>, Stanford University.</li>
+    
+    <li><strong>Min Ru, University of Houston</strong>, <em>Math 6397 Riemannian Geometry, Hodge Theory on Riemannian Manifolds</em>
+</ol>
+
+</p>
