@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article : Particles trapped in a ring potential</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Police Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- Highlight.js -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- Js -->
+<script src="Bouton code.js"></script>
+  <!--CSS -->  
+  <link rel="stylesheet" href="Night_mode.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_Ring_potential.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ]
+        });"></script>
+  </script>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" rel="stylesheet">
+
+
+  <!-- script -->
+</head>
+
+  <script src="Night_mode.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.hljs) {
+        hljs.highlightAll();
+      }
+      if (window.Prism) {
+        Prism.highlightAll();
+      }
+    });
+  </script>
+    <!-- Style -->
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.6;
+            padding: 40px;
+            background-color: #fafafa;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        .definition, .theorem, .remark {
+            border-left: 4px solid #444;
+            padding-left: 15px;
+            margin: 20px 0;
+            background: #f2f2f2;
+        }
+
+        .theorem {
+            border-color: #8b0000;
+        }
+
+        .remark {
+            border-color: #006400;
+            font-style: italic;
+        }
+
+        .references {
+            margin-left: 1.5rem;
+        }
+
+        .references li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        .justify {
+            text-align: justify;       
+            text-justify: inter-word;  
+            margin-bottom: 1.5rem;    
+        }
+
+    italique {
+        font-style: italic;
+    }
+    
+    
+
+pre[class*="language-"]::before {
+  content: "Python";
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+
+code[class*="language-"] {
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+.line-numbers .line-numbers-rows {
+  border-right: 1px solid #555;
+}
+
+
+.line-numbers-rows > span:before {
+  color: #888;
+}
+
+
+pre[class*="language-"] code:hover {
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 4px 20px rgba(81, 81, 81, 0.3);
+}
+
+    </style>
+
+<body>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
+    <h1>The Coherent States of the Harmonic Oscillator</h1>
+<div class="text-center">
+By Adrien Semik Le Du Da Silva
+</div> 
+
+<div class="text-center">
+03/07/2026
+</div> 
+    <div class="vspace-3cm">
+    
+<p>
+    <div class="vspace-2cm"></div>
+    <h2><strong>Introduction</strong></h2>
+    <div class="vspace-2cm"></div>
+    <div class="justify">
+
+    <p>Coherent States of the Quantum Harmonic Oscillator
+
+A hands-on exploration of the "most classical" quantum states built directly on the operator algebra from Cohen-Tannoudji's Quantum Mechanics, Vol. 1, Ch. 5. Starting from the eigenvalue equation $a \ket{\alpha} = \alpha \ket{\alpha}$,
+this piece derives the coherent state decomposition over the number basis, its Poissonian photon-number statistics, and the fact that its expectation values $\left\langle X \right\rangle (t)$ and $\left\langle P \right\rangle (t)$ trace out the exact classical trajectory of the oscillator; 
+all while saturating the Heisenberg uncertainty bound $\Delta X \times \Delta P = \frac{\hbar}{2}$  at every instant.
+
+The analytical results are then verified numerically in Python: the wavepacket is built from a superposition of Hermite functions, evolved in time via spectral decomposition, and animated to show it staying perfectly localized 
+in sharp contrast to a generic (non-coherent) Gaussian packet, which visibly spreads out over time.</p>
+    </div>
+<div class="vspace-2cm"></div>
+<h2><strong>Analytical construction</strong></h2>
+<div class="vspace-2cm"></div>
+
+<div class ="justify">
+    <p>
+        A coherent state $\ket{\alpha}$ is defined as the eigenstate of the annihilation operator $a$ with eigenvalue $\alpha \in \mathbb{C}$:
+        We need to construct $\ket{\alpha}$ in the basis of the harmonic oscillator number states $\ket{n}$, which are the eigenstates of the number operator $N = a^\dagger a$ with eigenvalues $n \in \mathbb{N}$.<br>
+        We define $\ket{\alpha}$ as a linear combination of the number states:
+        $$
+        \begin{equation}
+        \ket{\alpha} = \sum_{n=0}^{\infty} c_n \ket{n}
+        \end{equation}
+        $$
+
+        where $c_n$ are the coefficients to be determined. Applying the annihilation operator $a$ to $\ket{\alpha}$ gives:
+
+        $$
+        \begin{equation}
+        a \ket{\alpha} = a \sum_{n=0}^{\infty} c_n \ket{n} = \sum_{n=0}^{\infty} c_n a \ket{n} = \sum_{n=0}^{\infty} c_n \sqrt{n} \ket{n-1} = \alpha \sum_{n=0}^{\infty} c_n \ket{n}
+        \end{equation}
+        $$
+
+        So we have the relation:
+
+        $$
+        \begin{equation}
+        \sum_{n=0}^{\infty} c_n \sqrt{n} \ket{n-1} = \alpha \sum_{n=0}^{\infty} c_n \ket{n}
+        \end{equation}
+        $$
+        And for $n \geq 1$, we can write:
+        $$
+        \begin{equation}
+        c_n \sqrt{n} = \alpha c_{n-1}
+        \end{equation}
+        $$
+        This gives us a recurrence relation for the coefficients $c_n$:
+        $$
+        \begin{equation}
+        c_n = \frac{\alpha}{\sqrt{n}} c_{n-1}
+        \end{equation}
+        $$
+        Starting from $c_0$, we can express $c_n$ in terms of $c_0$:
+        $$
+        \begin{equation}
+        c_n = \frac{\alpha^n}{\sqrt{n!}} c_0
+        \end{equation}
+        $$
+        Now we have to deternine $c_0$ by normalizing the state $\ket{\alpha}$, and we write the bra :
+
+        $$
+        \begin{equation}
+        \bra{\alpha} = \sum_{m=0}^{\infty} c_m^* \bra{m} \text{ with } c_m^* = \frac{(\alpha^*)^m}{\sqrt{m!}} c_0^*
+        \end{equation}
+        $$  
+        Now let's compute the inner product $\braket{\alpha|\alpha}$:
+        $$
+        \begin{equation}
+        \braket{\alpha|\alpha} = \sum_{m=0}^{\infty} \sum_{n=0}^{\infty} c_m^* c_n \braket{m|n} = \sum_{n=0}^{\infty} |c_n|^2 \delta_{mn}= |c_0|^2 \sum_{n=0}^{\infty}  \frac{|\alpha|^{2n}}{n!} = |c_0|^2 e^{|\alpha|^2}
+        \end{equation}
+        $$
+        We kown that $\braket{\alpha|\alpha} = 1$, so we have:
+        $$
+        \begin{align}
+        |c_0|^2 e^{|\alpha|^2} &= 1 \\
+        \Leftrightarrow   |c_0|^2 &= e^{-|\alpha|^2} \\
+        \Leftrightarrow   c_0 &= e^{-|\alpha|^2/2}\\
+        \end{align}
+        $$
+    So at the end we have the expression of the coherent state $\ket{\alpha}$ in the number basis:
+    $$
+    \begin{equation}
+    \ket{\alpha} = e^{-|\alpha|^2/2} \sum_{n=0}^{\infty} \frac{\alpha^n}{\sqrt{n!}} \ket{n}
+    \end{equation}
+    $$
+
+    Now, we would like to compute $\left\langle N \right\rangle$ and $\left\langle N^2 \right\rangle$ to find the variance $\Delta N^2 = \left\langle N^2 \right\rangle - \left\langle N \right\rangle^2$ and show that the photon number statistics of a coherent state is Poissonian. We have: <br>
+    Let's start with the definition of N :
+
+    $$
+    \begin{equation}
+    N = a^\dagger a
+    \end{equation}
+    $$  
+    The mean value of N is given by:
+    $$
+    \begin{equation}
+    \left\langle N \right\rangle = \bra{\alpha} N \ket{\alpha} = \bra{\alpha} a^\dagger a \ket{\alpha}
+    \end{equation}
+    $$
+    So we have:
+    $$
+    \begin{align}
+    \left\langle N \right\rangle &= \bra{\alpha} a^\dagger (a \ket{\alpha})   \\
+    &= (\bra{\alpha} a^\dagger) \alpha \ket{\alpha} \\
+    &= \alpha^* \bra{\alpha} a \ket{\alpha} \text{ with } \bra{\alpha} a^\dagger = \bra{\alpha} \alpha^*\\
+    &= \alpha^* \alpha \braket{\alpha|\alpha} \\
+    &= |\alpha|^2
+    \end{align}
+    $$
+    Mean number of quanta photon if it's an mode of the electromagnetic field. And phonon if it's a mecanical oscillator.
+    Now let's compute $\left\langle N^2 \right\rangle$:
+    $$
+    \begin{equation}
+    \left\langle N^2 \right\rangle = \bra{\alpha} N^2 \ket{\alpha} = \bra{\alpha} a^\dagger a a^\dagger a \ket{\alpha}
+    \end{equation}
+    $$
+    We can use the commutation relation $[a, a^\dagger] = 1$ to rewrite $a a^\dagger$ as $a a^\dagger = a^\dagger a + 1$. So we have:
+    $$
+    \begin{align}
+    \left\langle N^2 \right\rangle &= \bra{\alpha} a^\dagger (a a^\dagger) a \ket{\alpha} \\
+    &= \bra{\alpha} a^\dagger (a^\dagger a + 1) a \ket{\alpha} \\
+    &= \bra{\alpha} a^\dagger a^\dagger a a \ket{\alpha} + \bra{\alpha} a^\dagger a \ket{\alpha} \\
+    &= \bra{\alpha} a^\dagger a^\dagger a a \ket{\alpha} + \left\langle N \right\rangle
+    \end{align}
+    $$
+    Now we can use the fact that $a \ket{\alpha} = \alpha \ket{\alpha}$ to compute $\bra{\alpha} a^\dagger a^\dagger a a \ket{\alpha}$:
+    $$
+    \begin{align}
+    \bra{\alpha} a^\dagger a^\dagger a a \ket{\alpha} &= \bra{\alpha} a^\dagger a^\dagger (a a \ket{\alpha}) \\
+    &= \bra{\alpha} a^\dagger a^\dagger (\alpha^2 \ket{\alpha}) \\
+    &= \alpha^2 \bra{\alpha} a^\dagger a^\dagger \ket{\alpha} \\
+    &= \alpha^2 (\bra{\alpha} a^\dagger) \alpha^* \ket{\alpha} \\
+    &= \alpha^2 \alpha^* \bra{\alpha} a^\dagger \ket{\alpha} \\
+    &= \alpha^2 \alpha^* \alpha^* \braket{\alpha|\alpha} \\
+    &= |\alpha|^4
+    \end{align}
+    $$
+    So at the end we have:
+    $$
+    \begin{align}
+    \left\langle N^2 \right\rangle &= |\alpha|^4 + \left\langle N \right\rangle \\
+    &= |\alpha|^4 + |\alpha|^2
+    \end{align}
+    $$
+    Now we can compute the variance $\Delta N^2$:
+    $$
+    \begin{align}
+    \Delta N^2 &= \left\langle N^2 \right\rangle - \left\langle N \right\rangle^2 \\
+    &= (|\alpha|^4 + |\alpha|^2) - (|\alpha|^2)^2 \\
+    &= |\alpha|^2 ;\\
+    \Delta N &= |\alpha| 
+    \end{align}
+    $$
+    It's a Poissonian distribution, the mean and the variance are equal. The standard deviation is the square root of the variance, so we have $\Delta N = \sqrt{|\alpha|^2} = |\alpha|$.
+    For exemple we can calculate the probability of having n photons in a coherent state $\ket{\alpha}$:
+    $$
+    \begin{equation}
+    P(n) = |\braket{n|\alpha}|^2 = |c_n|^2 = e^{-|\alpha|^2} \frac{|\alpha|^{2n}}{n!}
+    \end{equation}
+    $$
+    This is the Poisson distribution with mean $|\alpha|^2$.
+    <div class="vspace-2cm"></div>
+    The next calculations of the exercises are based on the fact that the coherent state $\ket{\alpha}$ is a minimum uncertainty state, which means that it saturates the Heisenberg uncertainty relation:
+    $$
+    \begin{equation}
+    \Delta X \Delta P = \frac{\hbar}{2}
+    \end{equation}
+    $$
+    We can compute the expectation values of the position and momentum operators $X$ and $P$ in the coherent state $\ket{\alpha}$:
+    $$
+    \begin{align}
+    X  = \sqrt{\frac{\hbar}{2m\omega}} (a + a^\dagger) \\
+    P  = i \sqrt{\frac{\hbar m \omega}{2}} (a - a^\dagger)
+    \end{align}
+    $$
+    To know the evolution of the expectation values of $X$ and $P$ in time, we can use the Heisenberg picture, where the operators evolve in time according to the Heisenberg equation of motion:
+    $$
+    \begin{align}
+    \frac{da}{dt} = \frac{i}{\hbar} [H, a] \\
+    \frac{da^\dagger}{dt} = \frac{i}{\hbar} [H, a^\dagger]
+    \end{align}
+    $$
+    where $H = \hbar \omega (a^\dagger a + \frac{1}{2})$ is the Hamiltonian of the harmonic oscillator. We can compute the commutators:
+    $$
+    \begin{align}
+    [H, a] = \hbar \omega [a^\dagger a, a] = -\hbar \omega a \\
+    [H, a^\dagger] = \hbar \omega [a^\dagger a, a^\dagger] = \hbar \omega a^\dagger
+    \end{align}
+    $$
+    So we have:
+    $$
+    \begin{align}
+    \frac{da}{dt} = -i \omega a \\
+    \frac{da^\dagger}{dt} = i \omega a^\dagger
+    \end{align}
+    $$
+    The solutions of these differential equations are:
+    $$
+    \begin{align}
+    a(t) = a(0) e^{-i \omega t} \\
+    a^\dagger(t) = a^\dagger(0) e^{i \omega t}
+    \end{align}
+    $$
+    Now we can compute the expectation values of $X$ and $P$ in the coherent state $\ket{\alpha}$ at time $t$:
+    $$
+    \begin{align}
+    \left\langle X \right\rangle (t) &= \bra{\alpha} X(t) \ket{\alpha} = \sqrt{\frac{\hbar}{2m\omega}} (\bra{\alpha} a(t) \ket{\alpha} + \bra{\alpha} a^\dagger(t) \ket{\alpha}) = \sqrt{\frac{\hbar}{2m\omega}} (\alpha e^{-i \omega t} + \alpha^* e^{i \omega t}) \\
+    &= \sqrt{\frac{2\hbar}{m\omega}} \text{Re}(\alpha e^{-i \omega t}) \\
+    \left\langle P \right\rangle (t) &= \bra{\alpha} P(t) \ket{\alpha} = i \sqrt{\frac{\hbar m \omega}{2}} (\bra{\alpha} a(t) \ket{\alpha} - \bra{\alpha} a^\dagger(t) \ket{\alpha}) = i \sqrt{\frac{\hbar m \omega}{2}} (\alpha e^{-i \omega t} - \alpha^* e^{i \omega t})\\
+    &= \sqrt{2\hbar m \omega} \text{Im}(\alpha e^{-i \omega t})
+    \end{align}
+    $$
+    But we know that $\alpha = |\alpha| e^{i \theta}$, so we can write:
+    $$
+    \begin{align}
+    \left\langle X \right\rangle (t) &= \sqrt{\frac{2\hbar}{m\omega}} |\alpha| \cos( \omega t - \theta) \\
+    \left\langle P \right\rangle (t) &= - \sqrt{2\hbar m \omega} |\alpha| \sin(\omega t - \theta)
+    \end{align}
+    $$
+    It's need to satify the Ehrenfest theorem, which states that the expectation values of the position and momentum operators in a quantum state follow the classical equations of motion. In this case, we have:
+    $$
+    \begin{align}
+    \frac{d}{dt} \left\langle X \right\rangle (t) &= \frac{1}{m} \left\langle P \right\rangle (t) \\
+    \frac{d}{dt} \left\langle P \right\rangle (t) &= - m \omega^2 \left\langle X \right\rangle (t)
+    \end{align}
+    $$
+    Now that we have the expectation values of $X$ and $P$ in time, we can compute the variances $\Delta X^2$ and $\Delta P^2$ to show that the coherent state saturates the Heisenberg uncertainty relation. We have:
+    $$
+    \begin{align}
+    \Delta X^2 &= \left\langle X^2 \right\rangle - \left\langle X \right\rangle^2 \\
+    \Delta P^2 &= \left\langle P^2 \right\rangle - \left\langle P \right\rangle^2
+    \end{align}
+    $$
+    We can compute $\left\langle X^2 \right\rangle$ and $\left\langle P^2 \right\rangle$ using the same method as before, and we find that:
+    $$
+    \begin{align}
+    \left\langle X^2 \right\rangle &= \frac{\hbar}{2m\omega} (1 + 4|\alpha|^2 \cos^2(\omega t - \theta)) \\
+    \left\langle P^2 \right\rangle &= \frac{\hbar m \omega}{2}(1 + 4|\alpha|^2 sin^2(\omega t - \theta))
+    \end{align}
+    $$
+    Now compute the variances at time $t = 0$ :
+    $$
+    \begin{align}
+    \Delta X^2 &= \frac{\hbar}{2m\omega} (1 + 4|\alpha|^2 \cos^2(\omega t - \theta)) - \frac{2\hbar}{m\omega} |\alpha|^2 \cos^2(\omega t - \theta) = \frac{\hbar}{2m\omega} \\
+    \Delta P^2 &=  \frac{\hbar m \omega}{2} (1 + 4|\alpha|^2 \sin^2(\omega t - \theta)) - 2\hbar m \omega |\alpha|^2 \sin^2(\omega t - \theta) = \frac{\hbar m \omega}{2}
+    \end{align}
+    $$
+    We can now verify the Heisenberg uncertainty relation:
+    $$
+    \begin{align}
+    \Delta X \Delta P &= \sqrt{\Delta X^2} \sqrt{\Delta P^2} = \sqrt{\frac{\hbar}{2m\omega}} \sqrt{\frac{\hbar m \omega}{2}} = \frac{\hbar}{2}
+    \end{align}
+    $$
+    This shows that the coherent state $\ket{\alpha}$ saturates the Heisenberg uncertainty relation, and is therefore a minimum uncertainty state. 
+    The expectation values of $X$ and $P$ in time follow the classical equations of motion, and the variances $\Delta X^2$ and $\Delta P^2$ are constant in time, 
+    which means that the coherent state remains localized in phase space as it evolves. This is in contrast to a generic (non-coherent) Gaussian wavepacket, which spreads out over time due to the uncertainty principle. 
+    The coherent state is therefore often referred to as the "most classical" quantum state, as it exhibits behavior that closely resembles classical physics.
+
+    </p>
+
+    <div class="vspace-2cm"></div>
+<h2><strong>Numerical Analysis (Python)</strong></h2>
+<div class="vspace-2cm"></div>
+
+<div class ="justify">
+Let's now start the numerical analysis of the coherent state in Python. We will build the wavepacket from a superposition of Hermite functions, evolve it in time via spectral decomposition, and animate it to show that it stays perfectly localized.     
+The fisrt thing to do it's to code the staionary wave function of the $\ket{n}$ states, which are given by the Hermite functions. The $n$-th stationary state $\psi_n(x)$ is given by:
+$$
+\begin{equation}
+\varphi_n(x) = \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} \frac{1}{\sqrt{2^n n!}} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x\right) e^{-\frac{m\omega}{2\hbar} x^2}
+\end{equation}
+$$
+where $H_n(x)$ is the $n$-th Hermite polynomial. We can implement this in Python using the `scipy.special.hermite` function to compute the Hermite polynomials. We will also need to define the parameters of the harmonic oscillator, such as the mass $m$, 
+the angular frequency $\omega$, and the reduced Planck constant $\hbar$. We can then define a function to compute the stationary wave function $\psi_n(x)$ for a given $n$ and $x$. We will also need to define a range of $x$ values over which to evaluate the wave functions.
+<pre class="line-numbers"><code class="language-python">
+x = np.linspace(-5, 5, 1000)
+m = 1.0
+omega = 1.0
+hbar = 1.0
+alpha = 1.0
+N = 10
+
+def phi(x,n,m,omega,hbar):
+    H_n = hermite(n)
+    return ((1/np.sqrt(2**n * factorial(n))) * 
+    (m*omega/(np.pi*hbar))**0.25 * np.exp(-m*omega*x**2/(2*hbar)) 
+    * H_n(np.sqrt(m*omega/hbar)*x))
+</code></pre>
+
+After that we can build the coherent state $\ket{\psi(x,0)}$ 
+as a superposition of the stationary states $\ket{\varphi_n}$ with the coefficients $c_n$ that we derived analytically. 
+We will sum over a finite number of states $N$ to approximate the coherent state.
+$$
+\begin{equation}
+\ket{\psi(x,0)} \approx \sum_{n=0}^{N} c_n \ket{\varphi_n} = e^{-|\alpha|^2/2} \sum_{n=0}^{N} \frac{\alpha^n}{\sqrt{n!}} \ket{\varphi_n}
+\end{equation}
+$$
+
+
+<pre class="line-numbers"><code class="language-python">
+    def psi(x,m,N,omega,hbar, alpha):
+        return (np.exp(-np.absolute(alpha)**2/2) * 
+        np.sum([alpha**k / np.sqrt(factorial(k)) *
+        phi(x,k,m,omega,hbar) for k in range(N)], axis=0))
+    </code></pre>
+For $N_{max} = 10$, we can plot the coherent state $\ket{\psi(x,0)}$ for a given value of $\alpha$. 
+We can also compute the time evolution of the coherent state using the time-dependent Schrödinger equation. 
+The time evolution of the coherent state is given by:
+
+$$
+\begin{equation}
+\ket{\psi(x,t)} = e^{-i H t / \hbar} \ket{\psi(x,0)} = e^{-i \omega t / 2} \sum_{n=0}^{\infty} c_n e^{-i n \omega t} \ket{\varphi_n}
+\end{equation}
+$$
+<pre class="line-numbers"><code class="language-python">
+def psi_time(x,m,omega,hbar, alpha, N ,t):
+    #E_n = hbar * omega * (n + 0.5)
+    return (np.exp(-np.absolute(alpha)**2/2) *
+    np.sum([alpha**k / np.sqrt(factorial(k))*np.exp(-1j* hbar * 
+    omega * (k + 0.5)*t/hbar) *
+    phi(x,k,m,omega,hbar) for k in range(N)], axis=0))
+    </code></pre>
+
+    Here, we plot the time evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps $t$.
+    <img src="img\7.png" alt="Evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps" style="width:100%;">
+    <figcaption class="text-center">Fig 1 : Evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps</figcaption>
+    </p>
+<button class="toggle-btn" onclick="toggleCode('code1')">Code Python for the plot</button>
+
+<div id="code1" class="toggle-content">
+    <pre><code class="language-python">
+plt.figure(figsize=(10, 6))
+t_values = [0, np.pi/4, np.pi/2, 3*np.pi/4, np.pi]
+for t in t_values:
+    psi_t = np.absolute(psi_time(x,m,omega,hbar, alpha, N ,t))**2
+    plt.plot(x, np.absolute(psi_t)**2, label=f't={t:.2f}')
+plt.title('Time Evolution of Coherent State Wavefunction')
+plt.xlabel('x')
+plt.ylabel('ψ(x,t)')
+plt.grid()
+plt.legend()
+plt.show()
+    </code></pre>
+</div>
+
+<div class="vspace-2cm"></div>
+Now we have correctly implemented the coherent state and its time evolution in Python. 
+The next step is to animate the time evolution of the coherent state to visualize how it remains localized over time, 
+in contrast to a generic Gaussian wavepacket that spreads out.
+But before let's compute the mean value of the position operator $\left\langle X \right\rangle$ in the coherent state $\ket{\psi(x,t)}$ at time $t$.
+
+
+<pre class="line-numbers"><code class="language-python">
+def valeur_moyenne_X(m, N, omega, hbar, alpha):
+    return np.sqrt(2*hbar/(m*omega)) * np.real(alpha)
+
+def valeur_moyenne_X_numerique(x, psi_t):
+    return np.trapezoid(x * np.absolute(psi_t)**2, x)
+    </code></pre>
+
+
+
+<img src="img/coherent_state_animation.gif" alt="Description du gif"style="width:100%;">
+<figcaption class="text-center">Fig 2 : Animation of the time evolution of the coherent state $\ket{\psi(x,t)}$</figcaption>
+
+<button class="toggle-btn" onclick="toggleCode('code2')">Code Python for the plot</button>
+
+<div id="code2" class="toggle-content">
+    <pre><code class="language-python">
+fig, ax = plt.subplots(figsize=(10, 6))
+line, = ax.plot([], [], color='blue', label='|ψ(x,t)|²')
+point, = ax.plot([], [], 'ro', markersize=10, label='classical position ⟨X⟩(t)')
+
+ax.set_xlim(-5, 5)
+ax.set_ylim(0, 1)  
+ax.set_xlabel('x')
+ax.set_ylabel('|ψ(x,t)|²')
+ax.legend()
+ax.grid()
+
+def init():  # initialize the plot
+    line.set_data([], [])
+    point.set_data([], [])
+    return line, point
+
+def update(frame): 
+    t = frame * dt 
+    psi_t = psi_time(x,m,omega,hbar, alpha, N ,t)
+    density = np.absolute(psi_t)**2
+    line.set_data(x, density)
+    
+    x_classique = valeur_moyenne_X(m, N, omega, hbar, alpha) * np.cos(omega*t)
+    point.set_data([x_classique], [0]) 
+    
+    ax.set_title(f'Time t = {t:.2f}')
+    return line, point
+
+dt = 0.05
+n_frames = 200
+
+ani = animation.FuncAnimation(fig, update, frames=n_frames, init_func=init, blit=True, interval=50)
+ani.save('coherent_state_animation.gif', writer=animation.PillowWriter(fps=20))
+plt.show()
+    </code></pre>
+</div>
+<div class="vspace-2cm"></div>
+We can see that the coherent state remains localized as it evolves in time, 
+following the classical trajectory of the harmonic oscillator. <br>
+Now we would like to compare this behavior with that of a generic Gaussian wavepacket, which is not a coherent state.
+To do that we create a function to generate a generic Gaussian wavepacket.
+After we decompose it in the basis of the stationary states $\ket{\varphi_n}$ and evolve it in time using the same method as for the coherent state.
+<pre class="line-numbers"><code class="language-python">
+def psi_non_coherent(x, sigma, x0=0):
+    return (1/(2*np.pi*sigma**2))**0.25 * np.exp(-(x-x0)**2/(4*sigma**2))
+
+def coefficients_projection(x, psi_initial, N, m, omega, hbar):
+    coeffs = []
+    for n in range(N):
+        phi_n = phi(x, n, m, omega, hbar)
+        c_n = np.trapezoid(np.conj(phi_n) * psi_initial, x)
+        coeffs.append(c_n)
+    return np.array(coeffs)
+
+def general_evolution(x, coeffs, m, omega, hbar, t):
+    result = np.zeros_like(x, dtype=complex)
+    for n, c_n in enumerate(coeffs):
+        E_n = hbar*omega*(n+0.5)
+        result += c_n * np.exp(-1j*E_n*t/hbar) * phi(x, n, m, omega, hbar)
+    return result
+    </code></pre>
+
+    We can oberve that the generic Gaussian wavepacket spreads out over time, in contrast to the coherent state which remains localized.
+
+    <img src="img\8.png" alt="Evolution of the generic Gaussian wavepacket" style="width:100%;">
+    <figcaption class="text-center">Fig 3 : Evolution of the generic Gaussian wavepacket $\ket{\psi_{non-coherent}(x,t)}$</figcaption>
+    <button class="toggle-btn" onclick="toggleCode('code3')">Code Python for the plot</button>
+
+    <div id="code3" class="toggle-content">
+    <pre><code class="language-python">
+plt.figure(figsize=(10, 6))
+sigma = 0.2
+psi_initial = psi_non_coherent(x, sigma)
+plt.plot(x, np.absolute(psi_initial)**2, label='Non-coherent State', color='purple')
+coeffs = coefficients_projection(x, psi_initial, N, m, omega, hbar)
+
+
+t_values = [0, np.pi/4, np.pi/2, 3*np.pi/4, np.pi]
+for t in t_values:
+    psi_t = general_evolution(x, coeffs, m, omega, hbar, t)
+    plt.plot(x, np.absolute(psi_t)**2, label=f't={t:.2f}', linestyle='--')
+plt.title('Time Evolution of Non-Coherent State Wavefunction')
+plt.xlabel('x')
+plt.ylabel('|ψ(x,t)|²')
+plt.grid()
+plt.legend()
+plt.show()
+    </code></pre>
+</div>
+<div class="vspace-2cm"></div>
+To finished this exercise, we can compute the variances $\Delta X^2$ and $\Delta P^2$ for the generic Gaussian wavepacket and show that it does not saturate the Heisenberg uncertainty relation.
+<pre class="line-numbers"><code class="language-python">
+
+def delta_X_numerique(x, psi_t):
+    x_mean = np.trapezoid(x*np.absolute(psi_t)**2, x)
+    x2_mean = np.trapezoid(x**2*np.absolute(psi_t)**2, x)
+    return np.sqrt(x2_mean - x_mean**2)
+
+
+def delta_P_numerique(x, psi_t, hbar):
+    dx = x[1] - x[0]
+    
+    dpsi_dx = np.gradient(psi_t, dx)
+    d2psi_dx2 = np.gradient(dpsi_dx, dx)
+    
+    p_mean = np.trapezoid(np.conj(psi_t) * (-1j*hbar) * dpsi_dx, x).real
+    p2_mean = np.trapezoid(np.conj(psi_t) * (-hbar**2) * d2psi_dx2, x).real
+    
+    return np.sqrt(p2_mean - p_mean**2)
+    </code></pre>
+
+
+    <img src="img\9.png" alt="delta X delta Y" style="width:100%;">
+    <figcaption class="text-center">Fig 3 : Heisenberg uncertaincy product over time</figcaption>
+    <button class="toggle-btn" onclick="toggleCode('code4')">Code Python for the plot</button>
+
+    <div id="code4" class="toggle-content">
+    <pre><code class="language-python">
+plt.figure(figsize=(10, 6))
+delta_X_values = []
+delta_P_values = []
+for t in np.linspace(0, 2*np.pi, 100):
+    psi_t = psi_time(x,m,omega,hbar, alpha, N ,t)
+    delta_X = delta_X_numerique(x, psi_t)
+    delta_P = delta_P_numerique(x, psi_t, hbar)
+    delta_X_values.append(delta_X)
+    delta_P_values.append(delta_P)
+    psi_non_coherent_t = general_evolution(x, coeffs, m, omega, hbar, t)
+
+plt.plot(np.linspace(0, 2*np.pi, 100), np.array(delta_X_values)*np.array(delta_P_values), label='ΔX(t)·ΔP(t)', color='blue')
+plt.axhline(y=hbar/2, color='red', linestyle='--', label='Heisenberg Limit (ħ/2)')
+plt.title('Uncertainty Product ΔX(t)·ΔP(t) Over Time')
+plt.xlabel('Time t')
+plt.ylabel('ΔX(t)·ΔP(t)')
+plt.grid()
+plt.legend()
+plt.show()
+    </code></pre>
+</div>
+
+    <div class="vspace-2cm"></div>
+    <h2><strong>Conclusion</strong></h2>
+    <div class="vspace-2cm"></div>
+
+In this exercise we
+derive the physics by hand, encode it numerically, and use the numerics to check the derivation rather than just illustrate it.
+Building the habit of treating a physical constraint (a conservation law, a minimum-uncertainty bound, a known symmetry) as a built-in test suite for the code, rather than trusting a plot just because it renders without crashing.
+
+Physically, the coherent-state construction is also a natural stepping stone to a much wider range of problems. 
+The ladder-operator machinery, the Poissonian number statistics, and the minimum-uncertainty wavepacket reappear almost unchanged in quantum optics (photon states, 
+squeezed light), in the quantization of any bosonic field mode, and more directly relevant to a longer-term interest in curved-spacetime field theory,
+in the Bogoliubov transformations used to describe particle creation in non-inertial frames or expanding spacetimes (Unruh and Hawking radiation both lean on exactly this kind of algebra, 
+generalized to non-trivial vacua). Having derived and verified the flat-spacetime version by hand and in code makes that generalization a matter of extending a machine already built, 
+rather than starting from scratch.
+
+</div>
