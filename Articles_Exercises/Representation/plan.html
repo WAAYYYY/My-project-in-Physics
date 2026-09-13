@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article : Particles trapped in a ring potential</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Police Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <!-- Highlight.js -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- Js -->
+<script src="Bouton code.js"></script>
+
+  <!--CSS -->  
+  <link rel="stylesheet" href="Night_mode.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_Ring_potential.css">
+  <link rel="stylesheet" href="plan.css">
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+  <!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '\\[', right: '\\]', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false}
+          ]
+        });"></script>
+
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.0.1/math.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" rel="stylesheet">
+
+
+  <!-- script -->
+
+
+  <script src="Night_mode.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+ <script src="plan.js" defer></script>
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.hljs) {
+        hljs.highlightAll();
+      }
+      if (window.Prism) {
+        Prism.highlightAll();
+      }
+    });
+  </script>
+   </head>
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.6;
+            padding: 40px;
+            background-color: #fafafa;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        .definition, .theorem, .remark {
+            border-left: 4px solid #444;
+            padding-left: 15px;
+            margin: 20px 0;
+            background: #f2f2f2;
+        }
+
+        .theorem {
+            border-color: #8b0000;
+        }
+
+        .remark {
+            border-color: #006400;
+            font-style: italic;
+        }
+
+        .references {
+            margin-left: 1.5rem;
+        }
+
+        .references li {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+        .justify {
+            text-align: justify;       
+            text-justify: inter-word;  
+            margin-bottom: 1.5rem;    
+        }
+
+    italique {
+        font-style: italic;
+    }
+    
+
+
+
+
+#Articles .article-card {
+  min-height: 200px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  transform: translateY(0) scale(1);
+  position: relative;
+  z-index: 1;
+}
+
+#Articles .article-card:hover {
+  transform: translateY(-8px) scale(1.03) !important;
+  box-shadow: 0 16px 30px rgba(0,0,0,0.22) !important;
+  z-index: 20;
+}
+
+pre[class*="language-"]::before {
+  content: "Python";
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+
+code[class*="language-"] {
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+.line-numbers .line-numbers-rows {
+  border-right: 1px solid #555;
+}
+
+
+.line-numbers-rows > span:before {
+  color: #888;
+}
+
+
+pre[class*="language-"] code:hover {
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 4px 20px rgba(81, 81, 81, 0.3);
+}
+    .fade-out-up {
+      opacity: 0;
+      transform: translateY(-50px);
+      transition: all 0.6s ease;
+    }
+
+
+    .fade-in-down {
+      opacity: 0;
+      transform: translateY(-50px);
+      animation: fadeDown 0.6s forwards;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    </style>
+
+<body>
+  <div class="container py-5">
+    <a href="index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
+    <h1>Visualisation of some vectors fields in a plan on R²</h1>
+<div class="text-center">
+By Adrien Semik Le Du Da Silva
+</div> 
+
+<div class="text-center">
+03/07/2026
+</div> 
+    <div class="vspace-3cm">
+
+    <p>
+        <div class="vspace-2cm"></div>
+        <h2><strong>Introduction and motivation</strong></h2>
+        <div class="vspace-2cm"></div>
+<div class="justify">
+    This page concerne the visualisation of some vector fields in a plan on R².
+    The goal is to provide an intuitive understanding of how vector fields behave in a two-dimensional space. By visualizing these fields, we can gain insights into their properties and applications in physics and engineering.
+    So we are going to create a simple field of vectors in a plan on R². the objectives are to calculate  the integral curves of the vector field, to visualize it and to understand the behavior of the vector field in different regions of the plan.<br>
+    So in this page YOU will be able to choose YOUR vector field in chosing the function $P(x,y)$ and $Q(x,y)$, the initial point $(x_0,y_0)$ and the time interval $[t_0,t_f]$ to visualize the integral curves of the vector field.
+</div>
+        <div class="vspace-2cm"></div>
+        <h2><strong>Defining a vector field</strong></h2>
+        <div class="vspace-2cm"></div>
+
+       <div class="justify">
+Let's start by defining a vector field. If we take a subset of $R^n$ we use a vector-valued function $F: U \subset R^n \to R^n$ that assigns a vector to each point in the subset, and admit it smooth (i.e., continuously differentiable). 
+So every smooth vector field $F$ on an open subset $U$ of $R^n$ can be written $\sum_{i=1}^{n} F_i \frac{\partial}{\partial x_i}$, where $F_i$ are the component functions of the vector field.
+In our case, we will consider a vector field in a plan on $R^2$,
+we will have a function $F: U \subset R^2 \to R^2$ that assigns a vector to each point in the plan. The vector field can be represented as $F(x,y) = (P(x,y), Q(x,y))$, where $P$ and $Q$ are scalar functions that define the components of the vector at each point $(x,y)$ in the plan.
+       </div>
+        <div class="vspace-2cm"></div>
+        <h2><strong>Integral curves of a vector field</strong></h2>
+        <div class="vspace-2cm"></div>
+
+       <div class="justify">
+
+    Let's begin simple with a first exemple, and let's take this vector field
+    $$
+    \begin{equation}
+    X(x,y) = P(x,y) \frac{\partial}{\partial x} + Q(x,y) \frac{\partial}{\partial y}
+    \end{equation}
+    $$
+    with the dynamical system associated to the vector field $X$ given by the following differential equations:
+    $$
+    \begin{equation}
+    \frac{dx}{dt} = P(x,y), \quad \frac{dy}{dt} = Q(x,y)
+    \end{equation}
+    $$
+    Let's take for our irst exemple the vector field $X(x,y) = x \frac{\partial}{\partial x} + -y \frac{\partial}{\partial y}$, so we have $P(x,y) = x$ and $Q(x,y) = -y$. The associated dynamical system is given by the following differential equations:
+    So the curve integral of the vector field $X$ is a curve $\gamma(t) = (x(t), y(t))$ that satisfies the following differential equations:
+    $$
+    \begin{equation}
+    \frac{dx}{dt} = x, \quad \frac{dy}{dt} = -y
+    \end{equation}
+    $$
+    The only critical point of the vector field $X$ is the origin $(0,0)$, so the explicite solution of the differential equations is given by the following equations:
+    $$
+    \begin{equation}
+    x(t) = x_0\exp(t), \quad y(t) = y_0\exp(-t)
+    \end{equation}
+    $$
+    where $(x_0,y_0)$ is the initial point of the curve integral $\gamma(t)$.
+    We obtain a selle point at the origin, and the integral curves of the vector field $X$ are given by the following equations:
+    $$
+    \begin{equation}
+    y = \frac{y_0}{x_0} x^{-1}
+    \end{equation}
+    $$
+    So the integral curves of the vector field $X$ are hyperbolas, and we can visualize them in the plan on $R^2$ by plotting the vector field and the integral curves. The vector field $X$ is represented by arrows that indicate the direction and magnitude of the vector at each point in the plan, and the integral curves are represented by curves that follow the direction of the vector field. The integral curves of the vector field $X$ are hyperbolas that approach the origin as $t \to \infty$ and move away from the origin as $t \to -\infty$. The integral curves of the vector field $X$ are shown in the following figure:
+       </div>
+    <img src="img\selle.png" alt="Integral curves of the vector field X" style="width:100%;">
+    <figcaption class="text-center">Fig 1 : Integral curves of the vector field $X$</figcaption>
+
+    <div class="vspace-2cm"></div>
+
+    Now it's your turn to choose your vector field and visualize the integral curves of the vector field in a plan on $R^2$.
+    With this widget you can choose the function $P(x,y)$ and $Q(x,y)$, the initial point $(x_0,y_0)$ and the time interval $[t_0,t_f]$ to visualize the integral curves of the vector field.
+    <div class="vspace-2cm"></div>
+
+    <section class="widget">
+    <h2><strong>Vector field visualisation widget (On a Saddle)</strong></h2>
+  <p>
+    Vector field in a plan on $R^2$ is defined by the following equations:
+    $$
+    \begin{equation}
+    \frac{dx}{dt} = P(x,y), \quad \frac{dy}{dt} = Q(x,y)
+    \end{equation}
+    $$
+  </p>
+
+  <div class="controls">
+    <div><label>P(x,y)</label><input id="p" value="x"></div>
+    <div><label>Q(x,y)</label><input id="q" value="-y"></div>
+    <div><label>x₀</label><input id="x0" type="number" value="1" step=".1"></div>
+    <div><label>y₀</label><input id="y0" type="number" value="1" step=".1"></div>
+    <div><label>T</label><input id="T" type="number" value="1.3" min=".1" step=".1"></div>
+    <div><label>L Domain</label><input id="L" type="number" value="2" min=".5" step=".5"></div>
+    <div><button id="draw">Draw</button></div>
+  </div>
+
+  <div class="examples">
+    <button class="example" data-p="x" data-q="-y">Saddle</button>
+    <button class="example" data-p="-y" data-q="x">Rotation</button>
+    <button class="example" data-p="-x" data-q="-y">Well</button>
+  </div>
+
+  <div id="message"></div>
+  <div id="plot"></div>
+    </section>
+
+    We can see with the widget above how the vector field and its integral curves behave for different choices of $P(x,y)$ and $Q(x,y)$.
+    And how the integral curves of the vector field change as we change the initial point $(x_0,y_0)$ and the time interval $[t_0,t_f]$.
+    For the second section, we are going to visualize the vector field in a Cylinder and introduce the concept of Riemannian metric and connexion.
+    

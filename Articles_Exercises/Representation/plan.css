@@ -1,0 +1,11 @@
+body { margin: 0; font-family: system-ui, sans-serif; background: #f8fafc; color: #172033; }
+.widget { max-width: 1200px; margin: 2rem auto; padding: 1.4rem; background: white; border-radius: 16px; }
+.controls { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; align-items: end; }
+label { display: block; font-weight: 650; margin-bottom: .3rem; }
+input, button { width: 100%; box-sizing: border-box; padding: .65rem; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; }
+button { background: #2563eb; color: white; border-color: #2563eb; cursor: pointer; font-weight: 700; }
+.examples { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0; }
+.example { width: auto; background: #dbeafe; color: #1e3a8a; border-color: #bfdbfe; }
+#message { min-height: 1.5rem; color: #b91c1c; }
+#plot { height: 780px; }
+@media (max-width: 750px) { .controls { grid-template-columns: repeat(2, 1fr); } }

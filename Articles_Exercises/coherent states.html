@@ -20,11 +20,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
   <!-- Js -->
-<script src="Bouton code.js"></script>
+<script src="../Bouton code.js"></script>
   <!--CSS -->  
-  <link rel="stylesheet" href="Night_mode.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style_Ring_potential.css">
+  <link rel="stylesheet" href="../Night_mode/Night_mode.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style_Ring_potential.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
   <!-- KaTeX -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -48,7 +48,7 @@
   <!-- script -->
 </head>
 
-  <script src="Night_mode.js"></script>
+  <script src="../Night_mode/Night_mode.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
@@ -152,7 +152,7 @@ pre[class*="language-"] code:hover {
 
 <body>
   <div class="container py-5">
-    <a href="index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
+    <a href="../index.html" class="btn btn-secondary mb-4">&larr; Retour</a>
     <h1>The Coherent States of the Harmonic Oscillator</h1>
 <div class="text-center">
 By Adrien Semik Le Du Da Silva
@@ -493,7 +493,7 @@ def psi_time(x,m,omega,hbar, alpha, N ,t):
     </code></pre>
 
     Here, we plot the time evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps $t$.
-    <img src="img\7.png" alt="Evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps" style="width:100%;">
+    <img src="..\img\7.png" alt="Evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps" style="width:100%;">
     <figcaption class="text-center">Fig 1 : Evolution of the coherent state $\ket{\psi(x,t)}$ for different time steps</figcaption>
     </p>
 <button class="toggle-btn" onclick="toggleCode('code1')">Code Python for the plot</button>
@@ -531,7 +531,7 @@ def valeur_moyenne_X_numerique(x, psi_t):
 
 
 
-<img src="img/coherent_state_animation.gif" alt="Description du gif"style="width:100%;">
+<img src="..\img/coherent_state_animation.gif" alt="Description du gif"style="width:100%;">
 <figcaption class="text-center">Fig 2 : Animation of the time evolution of the coherent state $\ket{\psi(x,t)}$</figcaption>
 
 <button class="toggle-btn" onclick="toggleCode('code2')">Code Python for the plot</button>
@@ -602,7 +602,7 @@ def general_evolution(x, coeffs, m, omega, hbar, t):
 
     We can oberve that the generic Gaussian wavepacket spreads out over time, in contrast to the coherent state which remains localized.
 
-    <img src="img\8.png" alt="Evolution of the generic Gaussian wavepacket" style="width:100%;">
+    <img src="..\img\8.png" alt="Evolution of the generic Gaussian wavepacket" style="width:100%;">
     <figcaption class="text-center">Fig 3 : Evolution of the generic Gaussian wavepacket $\ket{\psi_{non-coherent}(x,t)}$</figcaption>
     <button class="toggle-btn" onclick="toggleCode('code3')">Code Python for the plot</button>
 
@@ -650,7 +650,7 @@ def delta_P_numerique(x, psi_t, hbar):
     </code></pre>
 
 
-    <img src="img\9.png" alt="delta X delta Y" style="width:100%;">
+    <img src="..\img\9.png" alt="delta X delta Y" style="width:100%;">
     <figcaption class="text-center">Fig 3 : Heisenberg uncertaincy product over time</figcaption>
     <button class="toggle-btn" onclick="toggleCode('code4')">Code Python for the plot</button>
 
