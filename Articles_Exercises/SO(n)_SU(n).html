@@ -254,12 +254,6 @@ So now let's introduce $A(t) = \exp(tX)$ as a one-parameter matrix subgroup of $
     X^\top = -X.
     \end{equation}
     $$
-    We can see that $X$ is <strong>antisymmetric</strong>. We also need the condition $\det(A(t)) = 1$, so:
-    $$
-    \begin{equation}
-    \mathrm{tr}(X)=0.
-    \end{equation}
-    $$ 
   </li>
   <li>
     For $G = SU(n)$, the condition $A(t)^\dagger A(t) = I$ gives in the same way
@@ -330,22 +324,25 @@ a_{n1} & a_{n2} & \cdots & a_{nn}
 Which have to verify (3) and (4), so we gets this conditions :
 
 \[
-\overline{x_{ji}} = -x_{ij} \quad \forall \, i, j \in \{1, \dots, n\}
+-\overline{a_{ji}} = a_{ij} \quad \forall \, i, j \in \{1, \dots, n\}
+\]
+\[
+a_{ji} = -a_{ij} \quad \forall \, i, j \in \{1, \dots, n\}
 \]
 and for the diagonal :
 \[
-\overline{x_{ii}} = -x_{ii} \iff \text{Re}(x_{ii}) = 0 \quad \forall \, i \in \{1, \dots, n\}
+-\overline{a_{ii}} = a_{ii} \text{, and } a_{ii} = -a_{ii}\iff \text{Re}(a_{ii}) = 0 \quad \forall \, i \in \{1, \dots, n\}
 \]
 
-Now we just have to count, we kown now that the diagonal as $n-1$ degrees of freedom, and each coefficients has $2$ degrees of freedom, so doing the same thing as we do for $\mathfrak{sn}(n)$.
+Now we just have to count, we kown now that the diagonal as $n-1$ degrees of freedom, and each coefficients has $2$ degrees of freedom, so doing the same thing as we do for $\mathfrak{su}(n)$.
 $$
 \begin{equation}
     2 \sum_{k=1}^{n-1}k = {n(n-1)}
 \end{equation}
 $$
-Adding $n-1$ to this result, we get $\dim\big(\mathfrak{so}(n)\big) = n(n-1) + n-1 = n^2 -1$.\\
+Adding $n-1$ to this result, we get $\dim\big(\mathfrak{su}(n)\big) = n(n-1) + n-1 = n^2 -1$.
 
-To resume this part, we demonstrate the dimension of $\mathfrak{so}(n)$ and $\mathfrak{su}(n)$, we can then show that the dimensions of $\dim\big(\mathfrak{so}(3)\big) = 1$ and $\dim\big(\mathfrak{su}(2)\big) = 3$
+To resume this part, we demonstrate the dimension of $\mathfrak{so}(n)$ and $\mathfrak{su}(n)$, we can then show that the dimensions of $\dim\big(\mathfrak{so}(3)\big) = 3$ and $\dim\big(\mathfrak{su}(2)\big) = 3$
 <div class="vspace-2cm"></div>
 
 <h2><strong>Numerical implementation of the matrix exponential</strong></h2>
@@ -451,7 +448,8 @@ $$
 \sigma_2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad 
 \sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.
 $$
-The trick here is to use the adjoint representation, which is bijective and is the natural action of a group of matrices on its own tangent space (its Lie algebra).
+The trick here is to use the adjoint representation, which is a linear isomorphism between $\mathbb{R^3}$ and the hermitic matrices with trace zero. It is the natural action of a group of matrices on its own tangent space (its Lie algebra).
+The Adjoint $Ad : SU(2) \mapsto  SO(3)$ is a surjectif morphism of ker{$\pm$ I}
 </p>
 
 $$
@@ -463,7 +461,7 @@ It is always defined by conjugation, so for $SU(2)$ acting on $v$ we have:
 $$
   M(v(t)) = A(t)\, M(v_0)\, A(t)^\dagger.
 $$
-Conjugation (rather than simple multiplication $A(t)M(v_0)$) is the only operation that preserves the traceless anti-Hermitian property: if $Y^\dagger = -Y$ (anti-Hermitian), then $(gYg^\dagger)^\dagger = g Y^\dagger g^\dagger = -gYg^\dagger$, whereas $(gY)^\dagger = -Yg^\dagger \neq -(gY)$ in general. The same reasoning applies to the Hermitian matrix $M(v)$.
+Conjugation (rather than simple multiplication $A(t)M(v_0)$) is the only good operation that preserves the traceless anti-Hermitian property: if $Y^\dagger = -Y$ (anti-Hermitian), then $(gYg^\dagger)^\dagger = g Y^\dagger g^\dagger = -gYg^\dagger$, whereas $(gY)^\dagger = -Yg^\dagger \neq -(gY)$ in general. The same reasoning applies to the Hermitian matrix $M(v)$.
 The components of the transformed vector are recovered by projection, using $\mathrm{tr}(\sigma_i \sigma_j) = 2\delta_{ij}$:
 $$
   v_i(t) = \tfrac{1}{2}\,\mathrm{tr}\big(M(v(t))\,\sigma_i\big).
@@ -476,7 +474,7 @@ $$
 sigma_2 = np.array([[0, -1j], [1j, 0]], dtype=complex)
 sigma_3 = np.array([[1, 0], [0, -1]], dtype=complex)
 
-vectors_su2_0 = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])  # Example vectors in SU(2)
+vectors_su2_0 = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])  # Example vectors in R^3
 
 M = vectors_su2_0[0][0] * sigma_1 + vectors_su2_0[0][1] * sigma_2 + vectors_su2_0[0][2] * sigma_3
 
@@ -500,6 +498,11 @@ Numerically, we verify that the component along the identity remains zero ($a_0 
 
 <figure>
     <img src="..\img\11.png" alt="Trajectory of Exponential matrix in SU(2)" style="width: 60%; display: block; margin: 0 auto;" />
+    <figcaption>Trajectory of Exponential matrix in SU(2)</figcaption>
+</figure>
+
+<figure>
+    <img src="..\img\12.png" alt="The two orbits coincide after t to -t" style="width: 60%; display: block; margin: 0 auto;" />
     <figcaption>Trajectory of Exponential matrix in SU(2)</figcaption>
 </figure>
 
