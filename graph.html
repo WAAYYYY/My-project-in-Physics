@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue graphique</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="Night_mode/Night_mode.css">
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    #graph {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <svg id="graph" role="img" aria-label="Graphe des articles du site"></svg>
+  <button id="darkModeBtn" class="btn" type="button" aria-label="Toggle color theme" style="border-radius:50px; border:2px solid currentColor; padding:.45rem 1.1rem;">
+    <span id="modeIcon" class="icon"><i class="bi bi-sun-fill" aria-hidden="true"></i></span>
+    <span id="modeLabel">Night Mode</span>
+  </button>
+
+  <main id="page" aria-live="polite">
+    <button id="back" type="button">Back to the graph</button>
+    <article>
+      <h1 id="p-title"></h1>
+      <section id="p-body"></section>
+      <section id="p-articles" hidden>
+        <h2>Articles</h2>
+        <ul id="p-list"></ul>
+      </section>
+    </article>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="data.js"></script>
+  <script src="graph.js"></script>
+  <script src="Night_mode/Night_mode.js"></script>
+</body>
+</html>

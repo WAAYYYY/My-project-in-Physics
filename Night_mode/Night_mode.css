@@ -1,0 +1,190 @@
+/* Dark Mode Button */
+[data-bs-theme="dark"] #darkModeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 50px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 2px solid currentColor;
+  background: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+body, body *:not(canvas):not(.orbit):not(.electron):not(.planet):not(.sun):not(.nucleus):not(.month-card):not(.card-title):not(.list-group-item):not(.definition):not(.theorem):not(.remark):not(.references li):not(.fade-in-down):not(.fade-in-up):not(.fade-in-left):not(.fade-in-right):not(#darkModeBtn):not(nav a):not(.nav a):not(.lien) {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+[data-bs-theme="dark"] #darkModeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+}
+
+#darkModeBtn .icon {
+  font-size: 1.1rem;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+  display: inline-block;
+}
+
+#darkModeBtn.rotating .icon {
+  transform: rotate(360deg);
+  opacity: 0.5;
+}
+
+/* ============ Dark Mode Styles ============ */
+
+[data-bs-theme="dark"] body {
+  background-color: #111827;
+  color: #ffffff;
+}
+
+[data-bs-theme="dark"] .lien:hover {
+  transform: scale(1.2);
+}
+
+[data-bs-theme="dark"] .lien {
+  color: rgb(139, 139, 139);
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+  transition: transform 0.5s;
+  text-decoration: none;
+  display: inline-block; /* permet le scale sans retour à la ligne */
+}
+
+
+[data-bs-theme="dark"] nav a,
+[data-bs-theme="dark"] .nav a {
+  color: #d0d0d0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+[data-bs-theme="dark"] nav a:hover,
+[data-bs-theme="dark"] .nav a:hover {
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
+[data-bs-theme="dark"] #particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+[data-bs-theme="dark"] h1.titre,
+[data-bs-theme="dark"] .titre {
+  color: #f0f0f0;
+}
+
+[data-bs-theme="dark"] nav a,
+[data-bs-theme="dark"] .nav a {
+  color: #d0d0d0;
+}
+
+[data-bs-theme="dark"] text {
+  color: #f0f0f0;
+}
+
+[data-bs-theme="dark"] button {
+  background-color: #2980b9;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+[data-bs-theme="dark"] button:hover {
+  background-color: #1f618d;
+  transform: scale(1.1);
+}
+
+[data-bs-theme="dark"] .note {
+  background: #1a2332;
+  color: #f0f0f0;
+}
+
+[data-bs-theme="dark"] footer {
+  background-color: #0f1419;
+  color: #d0d0d0;
+}
+
+[data-bs-theme="dark"] li {
+  background: #1a2332;
+  color: #f0f0f0;
+}
+
+[data-bs-theme="dark"] .animation-description {
+  color: #f0f0f0;
+}
+
+[data-bs-theme="dark"] .animation-description-solar {
+  color: #f0f0f0;
+}
+
+/* ============ Calendar Cards in Dark Mode ============ */
+
+[data-bs-theme="dark"] .month-card {
+  background: #1a2332;
+  color: #f0f0f0;
+  border: 1px solid #2a3a4a;
+}
+
+[data-bs-theme="dark"] .month-card:hover {
+  background: #1a2332;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+[data-bs-theme="dark"] .card-title {
+  color: #e0e0e0;
+}
+
+[data-bs-theme="dark"] .list-group-item {
+  background: #1a2332;
+  color: #d0d0d0;
+  border-color: #2a3a4a;
+}
+
+[data-bs-theme="dark"] h1 {
+  color: #f0f0f0;
+}
+
+/* ============ Hairy Ball Theorem & Article Styles in Dark Mode ============ */
+
+[data-bs-theme="dark"] .definition,
+[data-bs-theme="dark"] .theorem,
+[data-bs-theme="dark"] .remark {
+  background: #1a2332;
+  color: #e0e0e0;
+  border-color: #333d4a;
+}
+
+[data-bs-theme="dark"] .theorem {
+  border-color: #c41e3a;
+}
+
+[data-bs-theme="dark"] .remark {
+  border-color: #4caf50;
+  color: #d0d0d0;
+}
+
+[data-bs-theme="dark"] .references {
+  color: #d0d0d0;
+}
+
+[data-bs-theme="dark"] .references li {
+  color: #c0c0c0;
+}
+
+[data-bs-theme="dark"] h2,
+[data-bs-theme="dark"] h3 {
+  color: #e0e0e0;
+}
+
